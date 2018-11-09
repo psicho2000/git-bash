@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dotfiles="$HOME/dotfiles"
+dotfiles="$HOME/git-bash"
 
 link() {
   from="$1"

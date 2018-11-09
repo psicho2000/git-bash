@@ -1,11 +1,11 @@
 # Includes
-. ~/utils/.settings
-. ~/utils/.fzf-completion.sh # requires https://github.com/junegunn/fzf/
-. ~/utils/.project_dir_completion.sh
-. ~/utils/.login.sh
+. ~/git-bash/utils/.settings
+. ~/git-bash/utils/.fzf-completion.sh # requires https://github.com/junegunn/fzf/
+. ~/git-bash/utils/.project_dir_completion.sh
+. ~/git-bash/utils/.login.sh
 
 # Set directory colors
-eval `dircolors ~/utils/.dircolors`
+eval `dircolors ~/git-bash/utils/.dircolors`
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..='cd ..'
