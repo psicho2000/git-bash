@@ -1,0 +1,77 @@
+## Manual: https://www.nano-editor.org/dist/v2.8/nanorc.5.html
+## Use Unix line endings (LF) for this file!
+
+## Constantly display the cursor position in the statusbar.  Note that this overrides "quickblank".
+set constantshow
+
+## Display the line numbers to the left of the text area.
+set linenumbers
+
+## Use this tab size instead of the default (8); it must be greater than 0.
+set tabsize 4
+
+## Convert typed tabs to spaces.
+set tabstospaces
+
+## Toggles whether new lines will contain the same amount of whitespace as the preceding line.
+set autoindent
+
+## Toggles smooth scrolling (when moving around with the arrow keys).
+set smooth
+
+## Toggles the displaying of overlong lines on multiple screen lines.
+set softwrap
+
+## Enable mouse support, if available for your system. When enabled, mouse clicks can be used to place the cursor,
+## set the mark (with a double click), and execute shortcuts. The mouse will work in the X Window System, and on
+## the console when gpm is running. Text can still be selected through dragging by holding down the Shift key.
+## Note: When this is set, pasting with mouse right button is disabled.
+## set mouse
+
+## Don't automatically add a newline to the ends of files.
+set nonewlines
+
+## Make the Home key smarter. When Home is pressed anywhere but at the very beginning of non-whitespace characters
+## on a line, the cursor will jump to that beginning (either forwards or backwards). If the cursor is already at
+## that position, it will jump to the true beginning of the line
+set smarthome
+
+## When reading in a file, insert it into a new buffer by default.
+set multibuffer
+
+#################################
+## UI Coloring ##################
+#################################
+## Valid names for the foreground and background colors are: white, black, blue, green, red, cyan, yellow, and magenta.
+## The name of the foreground color may be prefixed with bright. And either "fgcolor" or ",bgcolor" may be left out.
+
+## Specify the color combination to use for the title bar.
+set titlecolor white,blue
+## Specify the color combination to use for line numbers.
+set numbercolor white,blue
+## Specify the color combination to use for the status bar.
+set statuscolor white,green
+## Specify the color combination to use for the shortcut key combos in the two help lines at the bottom of the screen.
+set keycolor green
+## Specify the color combination to use for the function descriptions in the two help lines at the bottom of the screen.
+set functioncolor yellow
+
+#################################
+## Syntax Highlighting ##########
+#################################
+
+## YAML Syntax
+syntax "YAML" "\.ya?ml$"
+header "^---" "%YAML"
+
+color green     "(^| )!!(binary|bool|float|int|map|null|omap|seq|set|str) "
+color brightcyan  "\<(YES|yes|Y|y|ON|on|NO|no|N|n|OFF|off)\>"
+color brightcyan "\<(true|false)\>"
+color red ":[[:space:]]" "\[" "\]" ":[[:space:]]+[|>]" "^[[:space:]]*- "
+color brightyellow "[[:space:]][\*&][A-Za-z0-9]+"
+color yellow ""(\\.|[^"])*"|'(\\.|[^'])*'"
+color blue "(^|[[:space:]])#([^{].*)?$"
+color brightmagenta  "^---" "^\.\.\." "^%YAML" "^%TAG"
+color cyan "\$[A-Za-z_\.]+"
+color ,green "[[:space:]]+$"
+color ,red "    + +| +  +"
