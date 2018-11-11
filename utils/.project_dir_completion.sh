@@ -37,11 +37,8 @@ EOF
 }
 
 _project_dir() {
-    local cur subdirs
-    COMPREPLY=()
-    cur="${COMP_WORDS[COMP_CWORD]}"
-
-    subdirs=`find $project_base_dir -mindepth 1 -maxdepth 1 -type d -printf '%f '`
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    local subdirs=`find $project_base_dir -mindepth 1 -maxdepth 1 -type d -printf '%f '`
     COMPREPLY=($(compgen -W "${subdirs}" -- ${cur}))
     return 0
 }
