@@ -2,7 +2,7 @@
 
 dotfiles="$HOME/git-bash"
 
-link() {
+copy() {
   from="$1"
   to="$2"
   echo "Linking '$from' to '$to'"
@@ -11,7 +11,7 @@ link() {
 }
 
 if [[ -d "$dotfiles" ]]; then
-  echo "Symlinking dotfiles from $dotfiles"
+  echo "Copying dotfiles from $dotfiles"
 else
   echo "$dotfiles does not exist"
   exit 1
@@ -21,6 +21,6 @@ cd $dotfiles
 
 for location in $(find . -maxdepth 1 -type f -name '.*' -printf '%f\n'); do
   if [[ $location != "./.gitignore" ]]; then
-    link "$dotfiles/$location" "$HOME/$location"
+    copy "$dotfiles/$location" "$HOME/$location"
   fi
 done
