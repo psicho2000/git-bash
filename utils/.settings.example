@@ -1,10 +1,10 @@
 # Configuration
-export wiki_base_dir='/d/wiki'
 export desktop_dir='/d/Eigenes/Desktop'
 export project_base_dir='/d/projects/'
+export wiki_base_dir='/d/wiki'
 
-export login_identity_base_path="/d/Eigenes/identity"
-export login_machines=( ["example1"]="user1@host1;identity1"
-                        ["example2"]="user2@host2;identity2")
+export login_identity_base_path="~/.ssh"
+declare -A login_machines=( ["example1"]="user1@host1"           # if default identity is used (~/.ssh/id_rsa)
+                            ["example2"]="user2@host2;identity") # if custom identity is used
 
 # Environment specific commands/aliases/exports
