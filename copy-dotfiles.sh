@@ -22,5 +22,6 @@ cd $dotfiles
 for location in $(find . -maxdepth 1 -type f -name '.*' -printf '%f\n'); do
   if [[ $location != "./.gitignore" ]]; then
     copy "$dotfiles/$location" "$HOME/$location"
+    dos2unix "$HOME/$location"
   fi
 done
