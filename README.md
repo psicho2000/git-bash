@@ -18,7 +18,7 @@ Workaround: use store for private credentials, manager for team credentials, swa
    `git config --system -e`
 3. Swap with provided aliases `team`, `priv` or use `push_wiki()`
 
-## Creating private key authentication
+## Creating private key authentication (e.g. for login.sh)
 On local system
     ssh-keygen.exe -t rsa -C "markus.d.meier@gmail.com"
 Copy ~/.ssh/id_rsa.pub to remote system

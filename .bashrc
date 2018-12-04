@@ -7,6 +7,10 @@
 # Set directory colors
 eval `dircolors ~/git-bash/utils/.dircolors`
 
+# Set default editor
+export EDITOR='nano'
+export VISUAL='nano'
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..='cd ..'
 alias ...='cd ../..'

@@ -21,7 +21,7 @@ function login() {
             setting_parts=(${machine_setting//;/ })
             host=${setting_parts[0]}
             identity=${setting_parts[1]}
-            ssh -i $login_identity_base_path/$identity $host
+            ssh -i "$login_identity_base_path/$identity" $host
         # use default private key (~/.ssh/id_rsa)
         else
             ssh ${login_machines[$machine]}
