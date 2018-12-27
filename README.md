@@ -20,7 +20,7 @@ Workaround: use store for private credentials, manager for team credentials, swa
 
 ## Creating private key authentication (e.g. for login.sh)
 On local system
-    ssh-keygen.exe -t rsa -C "markus.d.meier@gmail.com"
+    ssh-keygen.exe -t rsa -C "your.email@example.com"
 Copy ~/.ssh/id_rsa.pub to remote system
 On remote system
     touch ~/.ssh/authorized_keys
