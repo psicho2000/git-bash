@@ -1,6 +1,7 @@
 # Configuration
 export desktop_dir='/d/Eigenes/Desktop'
-export project_base_dir='/d/projects/'
+export project_base_dir='/d/Projects/'
+export wiki_dir='/d/Projects/Wiki'
 
 export login_identity_base_path="~/.ssh"
 declare -A login_machines=( ["example1"]="user1@host1"           # if default identity is used (~/.ssh/id_rsa)
