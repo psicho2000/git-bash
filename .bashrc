@@ -34,6 +34,7 @@ alias ll='ls -lAh --group-directories-first'
 alias priv='git config --global credential.helper store'
 alias reload='exec bash -l'
 alias team='git config --global credential.helper manager'
+alias wiki='cd $wiki_dir'
 
 function docker-compose-exec() {
     winpty docker-compose exec "$1" bash
