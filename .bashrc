@@ -73,3 +73,11 @@ function push_wiki() {
     git push
     team
 }
+
+# History stuff
+alias h='history'
+alias hs="history-search"
+alias hsi='history-search -i'
+function history-search() {
+    history | grep $*
+}
