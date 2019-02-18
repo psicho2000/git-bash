@@ -41,10 +41,10 @@ _extract_machines() {
     echo $available_machines
 }
 
-_login() {
+_login_completion() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
     COMPREPLY=($(compgen -W "$(_extract_machines)" -- ${cur}))
     return 0
 }
 
-complete -F _login login
+complete -F _login_completion login
