@@ -25,3 +25,5 @@ for location in $(find . -maxdepth 1 -type f -name '.*' -printf '%f\n'); do
     dos2unix "$HOME/$location"
   fi
 done
+
+./utils/install-git-aliases.sh
