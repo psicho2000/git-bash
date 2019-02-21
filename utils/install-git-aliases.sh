@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Add & commit
 git config --global alias.ac '!git add . && git commit -am'
 
