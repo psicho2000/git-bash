@@ -5,17 +5,17 @@
 function login() {
     local machine=$1
     local host identity
-    
+
     # if no arg is provided and there is only one machine, take that one
     if [ -z "$machine" ] && [ ${#login_machines[@]} -eq "1" ]; then
         machine=${!login_machines[@]}
         echo "Logging into $machine"
     fi
-    
+
     # if arg is provided and the list of machines is not empty, login
     if [ ! -z "$machine" ] && [ ${login_machines[$machine]+_} ]; then
         machine_setting=${login_machines[$machine]}
-        ConEmuC -Silent -GuiMacro Rename 0 "$machine"
+        ConEmuC -Silent -GuiMacro Rename 0 "$machine" >/dev/null 2>&1
         # use custom private key
         if [[ "$machine_setting" =~ ";" ]]; then
             setting_parts=(${machine_setting//;/ })
@@ -26,7 +26,7 @@ function login() {
         else
             ssh ${login_machines[$machine]}
         fi
-        ConEmuC -Silent -GuiMacro Rename 0 "git-bash"
+        ConEmuC -Silent -GuiMacro Rename 0 "git-bash" >/dev/null 2>&1
     else
         printf "Unknown machine '%s'. Available machines: %s\\n" "${machine}" "$(_extract_machines)"
     fi
