@@ -1,5 +1,5 @@
 #!/bin/bash
-# Call via `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
+# Call via `curl -Lks https://bit.ly/setup-cfg | source`
 
 cd ~
 alias cfg='/mingw64/bin/git --git-dir=$HOME/.git-bash --work-tree=$HOME'
