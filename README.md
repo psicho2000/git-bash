@@ -9,9 +9,8 @@ bash-utils/
 .nanorc
 
 ## Usage
-1. Clone this repository into %userprofile%
-1. `~/git-bash/copy-dotfiles.sh`
-1. `cp ~/git-bash/utils/.settings.example ~/git-bash/utils/.settings`
+1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
+   (or call ./bash-utils/setup.sh)
 1. configure `.settings`
 
 * To enable nano, check the appropriate box during installation and take care that line endings of .nanorc are Unix style (LF)
@@ -33,3 +32,6 @@ Copy ~/.ssh/id_rsa.pub to remote system
 On remote system
     touch ~/.ssh/authorized_keys
     cat id_rsa.pub >> ~/.ssh/authorized_keys
+
+
+Thanks to https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
