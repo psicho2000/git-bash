@@ -1,7 +1,7 @@
 # Includes
-. ~/git-bash/utils/.settings
-. ~/git-bash/utils/.project_dir.sh
-. ~/git-bash/utils/.login.sh
+. ~/bash-utils/.settings
+. ~/bash-utils/.project_dir.sh
+. ~/bash-utils/.login.sh
 
 # Set directory colors
 eval `dircolors ~/git-bash/utils/.dircolors`
