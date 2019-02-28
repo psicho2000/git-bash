@@ -36,8 +36,6 @@ alias reload='exec bash -l'
 alias team='git config --global credential.helper manager'
 alias wiki='cd $wiki_dir'
 
-alias test_alias='echo test'
-
 function docker-compose-exec() {
     winpty docker-compose exec "$1" bash
 }
