@@ -3,6 +3,7 @@ Intended for Git Bash in Windows
 ## Contents
 * bash-utils/
 * .bashrc
+* .gitignore
 * .gitignore_global
 * .inputrc
 * .minttyrc
