@@ -1,12 +1,12 @@
 Intended for Git Bash in Windows
 
 ## Contents
-bash-utils/
-.bashrc
-.gitignore-global
-.inputrc
-.minttyrc
-.nanorc
+* bash-utils/
+* .bashrc
+* .gitignore-global
+* .inputrc
+* .minttyrc
+* .nanorc
 
 ## Usage
 1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
