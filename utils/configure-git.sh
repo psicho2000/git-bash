@@ -33,7 +33,12 @@ git config --global alias.last 'log -1 HEAD'
 # Delete all local branches that have already been merged to current branch
 git config --global alias.clean-merged '!git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d'
 
+##### Misc
+# Status
+git config --global alias.st 'status -sb'
 # Alias to show all aliases
 git config --global alias.aliases "config --get-regexp 'alias.*'"
 
+echo "Configuring git..."
+# general git config
 git config --global core.excludesfile '~/.gitignore_global'
