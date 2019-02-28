@@ -35,3 +35,5 @@ git config --global alias.clean-merged '!git branch --merged | grep -v \"\\*\" |
 
 # Alias to show all aliases
 git config --global alias.aliases "config --get-regexp 'alias.*'"
+
+git config --global core.excludesfile '~/.gitignore_global'

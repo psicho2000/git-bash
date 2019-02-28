@@ -26,4 +26,4 @@ for location in $(find . -maxdepth 1 -type f -name '.*' -printf '%f\n'); do
   fi
 done
 
-./utils/install-git-aliases.sh
+./utils/configure-git.sh
