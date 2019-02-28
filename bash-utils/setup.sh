@@ -13,4 +13,3 @@ __cfg config --local status.showUntrackedFiles no
 __cfg checkout
 ~/bash-utils/configure-git.sh
 cp ~/bash-utils/.settings.example ~/bash-utils/.settings
-exec bash -l
