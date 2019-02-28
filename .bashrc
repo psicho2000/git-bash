@@ -18,6 +18,7 @@ alias .....='cd ../../../..'
 alias ~='cd ~' # `cd` is probably faster to type though
 alias -- -='cd -'
 
+alias cfg='/mingw64/bin/git --git-dir=$HOME/.git-bash --work-tree=$HOME'
 alias d='winpty docker'
 alias dc='winpty docker-compose'
 alias dce='docker-compose-exec'
