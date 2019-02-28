@@ -6,7 +6,6 @@ function __cfg {
 }
 
 cd $HOME
-echo ".git-bash" >> $HOME/.gitignore
 git clone --bare https://github.com/psicho2000/git-bash $HOME/.git-bash
 __cfg config --local core.autocrlf input
 __cfg config --local status.showUntrackedFiles no
