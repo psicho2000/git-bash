@@ -1,4 +1,4 @@
-Intended for Git Bash in Windows
+Intended for Git Bash for Windows
 
 ## Contents
 * bash-utils/
