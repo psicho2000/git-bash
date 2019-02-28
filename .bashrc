@@ -1,6 +1,5 @@
 # Includes
 . ~/git-bash/utils/.settings
-. ~/git-bash/utils/.fzf-completion.sh
 . ~/git-bash/utils/.project_dir.sh
 . ~/git-bash/utils/.login.sh
 

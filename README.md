@@ -5,7 +5,6 @@ Intended for Git Bash in Windows
 1. `~/git-bash/copy-dotfiles.sh`
 1. `cp ~/git-bash/utils/.settings.example ~/git-bash/utils/.settings`
 1. configure `.settings`
-1. Requires installation of https://github.com/junegunn/fzf/
 
 * To enable nano, check the appropriate box during installation and take care that line endings of .nanorc are Unix style (LF)
 
