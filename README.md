@@ -13,7 +13,7 @@ bash-utils/
    (or call ./bash-utils/setup.sh)
 1. configure `.settings`
 
-* To enable nano, check the appropriate box during installation and take care that line endings of .nanorc are Unix style (LF)
+_To enable nano, check the appropriate box during installation and take care that line endings of .nanorc are Unix style (LF)_
 
 ## Enabling multiple GitHub credentials
 Normally, it should be possible to configure local credentials, which overwrite global (which override system).
