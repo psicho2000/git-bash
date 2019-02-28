@@ -14,6 +14,7 @@ Intended for Git Bash in Windows
 1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
    (or call `./bash-utils/setup.sh`)
 1. configure `.settings`
+1. Log into git-bash again
 
 *_To enable nano, check the appropriate box during installation. setup.sh takes care that line endings of .nanorc are Unix style (LF)._
 
