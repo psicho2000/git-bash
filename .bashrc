@@ -4,7 +4,7 @@
 . ~/bash-utils/.login.sh
 
 # Set directory colors
-eval `dircolors ~/git-bash/utils/.dircolors`
+eval `dircolors ~/bash-utils/.dircolors`
 
 # Set default editor
 export EDITOR='nano'
