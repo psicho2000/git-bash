@@ -4,7 +4,7 @@ echo "Installing git aliases..."
 
 ##### Committing
 # Add & commit
-git config --global alias.ac '!git add . && git commit -am'
+git config --global alias.ac '!git add -u && git commit -am'
 # Amend staged changes to the last commit, keeping the same commit message
 git config --global alias.amend 'commit --amend -C HEAD'
 
