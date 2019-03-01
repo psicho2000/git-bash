@@ -1,46 +1,47 @@
-# FIXME
 # https://alanbarber.com/post/how-to-customize-the-git-for-windows-bash-shell-prompt/
 
-prompt_git() {
-	local s='';
+# Setup
+# 1. Edit C:\Program Files\Git\etc\profile.d\git-prompt.sh (as Admin)
+# 2. Add the function to the top
+# 3. Add the line PS1+= before changing color / new line / $
+# 4. Reload bash
 
-	# Check if the current directory is in a Git repository.
-	if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+function __git_status {
+    local s;
+    # Check if the current directory is in a Git repository.
+    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
 
-		# check if the current directory is in .git before running git checks
-		if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+        # check if the current directory is in .git before running git checks
+        if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
 
-			# Ensure the index is up to date.
-			git update-index --really-refresh -q &>/dev/null;
+            # Ensure the index is up to date.
+            git update-index --really-refresh -q &>/dev/null;
 
-			# Check for uncommitted changes in the index.
-			if ! $(git diff --quiet --ignore-submodules --cached); then
-				s+='+';
-			fi;
+            # Check for uncommitted changes in the index.
+            if ! $(git diff --quiet --ignore-submodules --cached); then
+                s+='+';
+            fi;
 
-			# Check for unstaged changes.
-			if ! $(git diff-files --quiet --ignore-submodules --); then
-				s+='!';
-			fi;
+            # Check for unstaged changes.
+            if ! $(git diff-files --quiet --ignore-submodules --); then
+                s+='!';
+            fi;
 
-			# Check for untracked files.
-			if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-				s+='?';
-			fi;
+            # Check for untracked files.
+            if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+                s+='?';
+            fi;
 
-			# Check for stashed files.
-			if $(git rev-parse --verify refs/stash &>/dev/null); then
-				s+='$';
-			fi;
+            # Check for stashed files.
+            if $(git rev-parse --verify refs/stash &>/dev/null); then
+                s+='$';
+            fi;
 
-		fi;
+        fi;
 
-		[ -n "${s}" ] && s=" [${s}]";
-
-        PS1="\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]"
-        PS1+=$s
-        PS1+="\n$ "
-        export PS1;
-	fi;
+        [ -n "${s}" ] && s=" [${s}]";
+        echo -e "$s";
+    fi;
 }
-prompt_git
+
+PS1+='\[\033[34m\]`__git_status`' # change color to blue and show git status
