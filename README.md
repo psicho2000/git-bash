@@ -8,6 +8,7 @@ Intended for Git Bash for Windows
 * .inputrc
 * .minttyrc
 * .nanorc
+* README.md
 
 ## Usage
 1. Install Git for Windows*
