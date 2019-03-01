@@ -15,7 +15,7 @@ Intended for Git Bash for Windows
    (or call `./bash-utils/setup.sh`)
 1. configure `.settings`
 1. Log into git-bash again
-1. (Optional) To add git status prompt, follow bash-utils/.bash_prompt
+1. (Optional) To add git status prompt, follow `bash-utils/.bash_prompt`
 
 *_To enable nano, check the appropriate box during installation. setup.sh takes care that line endings of .nanorc are Unix style (LF)._
 
