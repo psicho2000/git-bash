@@ -11,4 +11,5 @@ __cfg config --local status.showUntrackedFiles no
 __cfg checkout
 __cfg push -u origin HEAD
 $HOME/bash-utils/configure-git.sh
+$HOME/bash-utils/configure-ssh.sh
 cp $HOME/bash-utils/.settings.example $HOME/bash-utils/.settings
