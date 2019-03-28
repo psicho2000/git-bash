@@ -43,7 +43,7 @@ _extract_machines() {
 
 _login_completion() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=($(compgen -W "$(_extract_machines)" -- ${cur}))
+    COMPREPLY=( $(compgen -W "$(_extract_machines)" -- ${cur}) )
     return 0
 }
 

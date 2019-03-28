@@ -39,7 +39,7 @@ EOF
 _project_dir_completion() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
     local subdirs=`find $project_base_dir -mindepth 1 -maxdepth 1 -type d -printf '%f '`
-    COMPREPLY=($(compgen -W "${subdirs}" -- ${cur}))
+    COMPREPLY=( $(compgen -W "${subdirs}" -- ${cur}) )
     return 0
 }
 complete -F _project_dir_completion project-dir pj
