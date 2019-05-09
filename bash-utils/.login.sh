@@ -1,44 +1,24 @@
 #!/bin/bash
-# Assumes it is used within Cmder/ConEmu. If used within git-bash, remove the lines starting with ConEmuC.
-# Configure it in .settings.
+# Configure it in ~/.ssh/config
 
 function login() {
-    local machine=$1
-    local host identity
+    local host=$1
 
-    # if no arg is provided and there is only one machine, take that one
-    if [ -z "$machine" ] && [ ${#login_machines[@]} -eq "1" ]; then
-        machine=${!login_machines[@]}
-        echo "Logging into $machine"
-    fi
-
-    # if arg is provided and the list of machines is not empty, login
-    if [ ! -z "$machine" ] && [ ${login_machines[$machine]+_} ]; then
-        machine_setting=${login_machines[$machine]}
-        ConEmuC -Silent -GuiMacro Rename 0 "$machine" >/dev/null 2>&1
-        # use custom private key
-        if [[ "$machine_setting" =~ ";" ]]; then
-            setting_parts=(${machine_setting//;/ })
-            host=${setting_parts[0]}
-            identity=${setting_parts[1]}
-            ssh -i "$login_identity_base_path/$identity" $host
-        # use default private key (~/.ssh/id_rsa)
-        else
-            ssh ${login_machines[$machine]}
-        fi
+    # if arg is provided and host exists, login
+    if [ ! -z "$host" ] && [[ "$(_extract_machines)" == *"$host"* ]]; then
+        ConEmuC -Silent -GuiMacro Rename 0 "$host" >/dev/null 2>&1
+        ssh $*
         ConEmuC -Silent -GuiMacro Rename 0 "git-bash" >/dev/null 2>&1
     else
-        printf "Unknown machine '%s'. Available machines: %s\\n" "${machine}" "$(_extract_machines)"
+        printf "Unknown host '%s'. Available machines: %s\\n" "${host}" "$(_extract_machines)"
     fi
 }
 
 _extract_machines() {
-    local available_machines
-    for machine in "${!login_machines[@]}"; do
-        available_machines="$available_machines $machine";
-    done
+    local hosts=`egrep "^Host [^*]" $HOME/.ssh/config`
+    hosts=${hosts//Host/}
     # return value through command substitution
-    echo $available_machines
+    echo $hosts
 }
 
 _login_completion() {
@@ -47,4 +27,4 @@ _login_completion() {
     return 0
 }
 
-complete -F _login_completion login
+complete -F _login_completion login ssh scp

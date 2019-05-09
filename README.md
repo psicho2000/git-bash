@@ -14,7 +14,7 @@ Intended for Git Bash for Windows
 1. Install Git for Windows*
 1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
    (or call `./bash-utils/setup.sh`)
-1. configure `.settings`
+1. configure `.settings` and `~/.ssh/config`
 1. Log into git-bash again
 1. (Optional) To add git status prompt, follow `bash-utils/.bash_prompt`
 
