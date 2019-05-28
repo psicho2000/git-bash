@@ -1,8 +1,3 @@
-# Includes
-. ~/bash-utils/.settings
-. ~/bash-utils/.project_dir.sh
-. ~/bash-utils/.login.sh
-
 # Set directory colors
 eval `dircolors ~/bash-utils/.dircolors`
 
@@ -81,3 +76,8 @@ alias hsi='history-search -i'
 function history-search() {
     history | grep $*
 }
+
+# Include last so that common aliases can be overridden in custom settings
+. ~/bash-utils/.settings
+. ~/bash-utils/.project_dir.sh
+. ~/bash-utils/.login.sh
