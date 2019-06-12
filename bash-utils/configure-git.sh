@@ -18,7 +18,7 @@ git config --global alias.ci 'commit -am'
 # Amend staged changes to the last commit, keeping the same commit message
 git config --global alias.amend 'commit --amend -C HEAD'
 # Push unpublished branch
-git config --global alias.publish 'git push --set-upstream origin $(git rev-parse — abbrev-ref HEAD)'
+git config --global alias.publish '!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 
 ##### Resetting
 # Undo Commit
