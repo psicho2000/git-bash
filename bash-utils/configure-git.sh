@@ -10,13 +10,15 @@ git config --global alias.col 'checkout @{-1}'
 # Checkout new branch
 git config --global alias.new 'checkout -b'
 
-##### Committing
+##### Commit & push
 # Stage everything & commit
 git config --global alias.ac '!git add . && git commit -am'
 # Stage changes & commit (a.k.a. "checkin")
 git config --global alias.ci 'commit -am'
 # Amend staged changes to the last commit, keeping the same commit message
 git config --global alias.amend 'commit --amend -C HEAD'
+# Push unpublished branch
+git config --global alias.publish 'git push --set-upstream origin $(git rev-parse — abbrev-ref HEAD)'
 
 ##### Resetting
 # Undo Commit
