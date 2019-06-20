@@ -81,3 +81,14 @@ function history-search() {
 . ~/bash-utils/.settings
 . ~/bash-utils/.project_dir.sh
 . ~/bash-utils/.login.sh
+
+# ng autocomplete
+_ng_completion () {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=( $(compgen -W "" -- ${cur}) )
+    if [[ "$COMP_CWORD" -eq "1" ]]; then
+        local commands="add analytics build config doc e2e generate help lint new run serve test update version xi18n"
+        COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+    fi
+}
+complete -o default -F _ng_completion ng
