@@ -27,4 +27,5 @@ _login_completion() {
     return 0
 }
 
-complete -F _login_completion login ssh scp
+alias l='login'
+complete -F _login_completion login l ssh scp
