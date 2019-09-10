@@ -27,18 +27,28 @@ git config --global alias.undo-commit 'reset --soft HEAD~1'
 git config --global alias.unstage 'reset HEAD --'
 
 ##### Logs
-# One-line logs including branching in/out
-git config --global alias.hist 'log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
-# Show last commit
-git config --global alias.last 'log -1 HEAD'
+# One-line log including branching in/out (last 30 commits)
+git config --global alias.l "log --pretty=format:'%C(yellow)%h %<(30)%Cgreen%an%x09%C(black bold)%ad%x09%C(auto)%d%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S' -30"
+# One-line log including branching in/out (all commits)
+git config --global alias.la "log --pretty=format:'%C(yellow)%h %<(30)%Cgreen%an%x09%C(black bold)%ad%x09%C(auto)%d%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S'"
+# One-line log including branching in/out and stats (last 15 commits)
+git config --global alias.ls "log --pretty=format:'%C(yellow)%h %<(30)%Cgreen%an%x09%C(black bold)%ad%x09%C(auto)%d%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S' -15 --stat"
+# One-line log including branching in/out (graphical)
+git config --global alias.hist "log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
+# Last commit including stats
+git config --global alias.last 'log -1 --stat HEAD'
+# List contributors with number of commits
+git config --global alias.contributors 'shortlog --summary --numbered'
 
 ##### Misc
 # Status
-git config --global alias.st 'status -sb'
-# Delete all local branches that have already been merged to current branch
-git config --global alias.clean-merged '!git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d'
+git config --global alias.s 'status -sb'
 # Alias to show all aliases
 git config --global alias.aliases "config --get-regexp 'alias.*'"
+# Show verbose output about tags, branches or remotes
+git config --global alias.tags 'tag -l'
+git config --global alias.branches 'branch -a'
+git config --global alias.remotes 'remote -v'
 
 echo "Configuring git..."
 # general git config
