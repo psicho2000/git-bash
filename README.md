@@ -17,6 +17,11 @@ Intended for Git Bash for Windows
 1. configure `.settings` and `~/.ssh/config`
 1. Log into git-bash again
 1. (Optional) To add git status prompt, follow `bash-utils/.bash_prompt`
+1. (Optional) Add a repository specific URL (in case of ssh: `"git@github.com:<username>/")` shorthand, e.g.:
+   ```
+    [url "https://github.com/<username>/"]
+        insteadOf = "gh:"
+   ```
 
 *_To enable nano, check the appropriate box during installation. setup.sh takes care that line endings of .nanorc are Unix style (LF)._
 
