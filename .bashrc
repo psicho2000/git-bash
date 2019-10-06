@@ -28,6 +28,7 @@ alias g='./gradlew' # requires gradle and gradle wrapped projects
 alias ll='ls -lAh --group-directories-first'
 alias priv='git config --global credential.helper store'
 alias reload='exec bash -l'
+alias showpath='echo $PATH|sed -E "s/:/\n/g"'
 alias team='git config --global credential.helper manager'
 alias wiki='cd $wiki_dir'
 
