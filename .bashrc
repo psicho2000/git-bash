@@ -25,10 +25,10 @@ alias di='docker-inspect'
 alias dps='docker-ps-format'
 alias dpsn='docker-ps-format-sort-by-name'
 alias g='./gradlew' # requires gradle and gradle wrapped projects
+alias greppath='showpath|grep -i'
 alias ll='ls -lAh --group-directories-first'
 alias priv='git config --global credential.helper store'
 alias reload='exec bash -l'
-alias showpath='echo $PATH|sed -E "s/:/\n/g"'
 alias team='git config --global credential.helper manager'
 alias wiki='cd $wiki_dir'
 
@@ -61,6 +61,9 @@ function explain() {
         declare -f $alias_part
     fi
     declare -f $1
+}
+function showpath() {
+    echo $PATH|sed -E 's/:/\n/g'
 }
 function push_wiki() {
     priv
