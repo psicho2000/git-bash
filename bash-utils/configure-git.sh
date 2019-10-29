@@ -53,3 +53,4 @@ git config --global alias.remotes 'remote -v'
 echo "Configuring git..."
 # general git config
 git config --global core.excludesfile '~/.gitignore_global'
+git config --global include.path .gitconfig
