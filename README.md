@@ -33,6 +33,7 @@ Workaround: use store for private credentials, manager for team credentials, swa
 2. Remove [credential] section from system config
    * `git config --system -e`
 3. Swap with provided aliases `team`, `priv` or use `push_wiki()`
+4. To change credentials in Windows Credential Manager, open the search box and type "credential manager" (en) or "Anmeldeinformationsverwaltung" (de).
 
 ## Creating private key authentication (e.g. for .login.sh)
 * On local system
