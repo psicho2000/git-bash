@@ -1,10 +1,5 @@
+#!/bin/bash
 # https://alanbarber.com/post/how-to-customize-the-git-for-windows-bash-shell-prompt/
-
-# Setup
-# 1. Edit C:\Program Files\Git\etc\profile.d\git-prompt.sh (as Admin)
-# 2. Add the function to the top
-# 3. Add the line PS1+= before changing color / new line / $
-# 4. Reload bash
 
 function __git_status {
     local s;
@@ -44,4 +39,27 @@ function __git_status {
     fi;
 }
 
+PS1='\[\033]0;Git Bash\007\]'  # set window title
+PS1+='\n'                      # new line
+PS1+='\[\033[32m\]'            # change to green
+PS1+='\u@\h '                  # user@host<space>
+PS1+='\[\033[33m\]'            # change to brownish yellow
+PS1+='\w'                      # current working directory
+if test -z "$WINELOADERNOEXEC"
+then
+    GIT_EXEC_PATH="$(git --exec-path 2>/dev/null)"
+    COMPLETION_PATH="${GIT_EXEC_PATH%/libexec/git-core}"
+    COMPLETION_PATH="${COMPLETION_PATH%/lib/git-core}"
+    COMPLETION_PATH="$COMPLETION_PATH/share/git/completion"
+    if test -f "$COMPLETION_PATH/git-prompt.sh"
+    then
+        . "$COMPLETION_PATH/git-completion.bash"
+        . "$COMPLETION_PATH/git-prompt.sh"
+        PS1+='\[\033[36m\]'  # change color to cyan
+        PS1+='`__git_ps1`'   # bash function
+    fi
+fi
 PS1+='\[\033[34m\]`__git_status`' # change color to blue and show git status
+PS1+='\[\033[0m\]'                # change color
+PS1+='\n'                         # new line
+PS1+='$ '                         # prompt: always $
