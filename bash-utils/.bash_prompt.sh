@@ -1,5 +1,6 @@
 #!/bin/bash
 # https://alanbarber.com/post/how-to-customize-the-git-for-windows-bash-shell-prompt/
+# This file is sourced by git-bash in C:\Program Files\Git\etc\profile.d\git-prompt.sh
 
 function __git_status {
     local s;
