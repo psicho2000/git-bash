@@ -14,7 +14,12 @@ Intended for Git Bash for Windows
 1. Install Git for Windows*
 1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
    (or call `./bash-utils/setup.sh`)
-1. configure `.settings` and `~/.ssh/config`
+1. Configure `.settings`
+1. Configure `~/.ssh/config`
+   On Windows, make sure all keyfiles and config itself have appropriate rights:
+       .ssh > Properties > Security > Advanced
+           * Disable inheritance
+           * Only current user may access this file
 1. Log into git-bash again
 1. (Optional) Add a repository specific URL (in case of ssh: `"git@github.com:<username>/")` shorthand, e.g.:
    ```
