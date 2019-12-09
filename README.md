@@ -15,7 +15,7 @@ Intended for Git Bash for Windows
 1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
    (or call `./bash-utils/setup.sh`)
 1. Configure `.settings`
-1. Configure `~/.ssh/config`
+1. Configure `~/.ssh/config` (for more info, see https://linux.die.net/man/5/ssh_config)
    On Windows, make sure all keyfiles and config itself have appropriate rights:
        .ssh > Properties > Security > Advanced
            * Disable inheritance
