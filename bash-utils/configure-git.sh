@@ -43,7 +43,8 @@ git config --global alias.contributors 'shortlog --summary --numbered'
 ##### Misc
 # Status
 git config --global alias.s 'status -sb'
-# Alias to show all aliases
+# Alias to show all or specific aliases
+git config --global alias.alias '!f() { git config --get-regexp "alias.$1*"; }; f'
 git config --global alias.aliases "config --get-regexp 'alias.*'"
 # Show verbose output about tags, branches or remotes
 git config --global alias.tags 'tag -l'

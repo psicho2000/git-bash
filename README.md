@@ -35,7 +35,7 @@ This however does not work.
 Workaround: use store for private credentials, manager for team credentials, swap using aliases:
 1. Create `C:/Users/<user>/.git-credentials` (containing private credentials)
    * `https://<user>:<password>@github.com`
-2. Remove [credential] section from system config
+2. Remove [credential] section from system config (needs an admin user)
    * `git config --system -e`
 3. Swap with provided aliases `team`, `priv` or use `push_wiki()`
 4. To change credentials in Windows Credential Manager, open the search box and type "credential manager" (en) or "Anmeldeinformationsverwaltung" (de).
