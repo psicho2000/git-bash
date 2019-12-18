@@ -29,6 +29,7 @@ alias g='./gradlew' # requires gradle and gradle wrapped projects
 #alias g='git'
 alias greppath='path|grep -i'
 alias ll='ls -lAh --group-directories-first'
+alias md='make-dir'
 alias myip='curl -s ifconfig.me'
 alias myipv6='curl -s ifconfig.co'
 alias priv='git config --global credential.helper store'
@@ -65,6 +66,10 @@ function explain() {
         declare -f $alias_part
     fi
     declare -f $1
+}
+# create a directory recursively an cd to it
+function make-dir() {
+        mkdir -p "$@" && cd "$_";
 }
 function path() {
     echo $PATH|sed -E 's/:/\n/g'
