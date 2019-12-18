@@ -32,6 +32,26 @@ function __git_status {
             if $(git rev-parse --verify refs/stash &>/dev/null); then
                 s+='$';
             fi;
+            
+            # Check ahead/behind status
+            local remote_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
+            local local_branch=$(git rev-parse --abbrev-ref HEAD)
+            local ahead=$(git rev-list --right-only --count "$remote_branch"..."$local_branch")
+            local behind=$(git rev-list --left-only --count "$remote_branch"..."$local_branch")
+            if [[ $ahead -gt 0 || $behind -gt 0 ]]; then
+                if [[ $ahead -gt 0 ]]; then
+                    if [[ ! -z $s ]]; then
+                        s+=" "
+                    fi
+                    s+="$ahead↑"
+                fi
+                if [[ $behind -gt 0 ]]; then
+                    if [[ ! -z $s ]]; then
+                        s+=" "
+                    fi
+                    s+="$behind↓"
+                fi
+            fi
 
         fi;
 
