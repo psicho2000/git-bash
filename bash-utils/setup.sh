@@ -1,6 +1,6 @@
 #!/bin/bash
 # Call via `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
-# Be sure to log in to your repo, otherwise the below push won't work
+# Be sure to log in to your repo before calling this script, otherwise the below push won't work
 
 function __cfg {
   /mingw64/bin/git --git-dir=$HOME/.git-bash --work-tree=$HOME $@
