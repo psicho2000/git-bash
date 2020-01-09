@@ -12,6 +12,7 @@ Intended for Git Bash for Windows
 
 ## Usage
 1. Install Git for Windows*
+1. Log in to you git repo to be able to configure push (see `setup.sh`)
 1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
    (or call `./bash-utils/setup.sh`)
 1. Configure `.settings`
