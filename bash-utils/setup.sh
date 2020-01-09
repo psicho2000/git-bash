@@ -10,6 +10,7 @@ function __cfg {
 __cfg config --local core.autocrlf input
 __cfg config --local status.showUntrackedFiles no
 __cfg checkout
+__cfg pull
 __cfg push -u origin HEAD
 $HOME/bash-utils/configure-git.sh
 $HOME/bash-utils/configure-ssh.sh
