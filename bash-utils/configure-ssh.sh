@@ -1,5 +1,6 @@
 #!/bin/bash
-cat <<EOT >> $HOME/.ssh/config
+if [[ ! -f "$HOME/.ssh/config" ]]; then
+    cat <<EOT >> $HOME/.ssh/config
 Host *
     Compression yes
     ServerAliveInterval 240
@@ -14,5 +15,6 @@ Host *
 #    IdentityFile $HOME/.ssh/keyfile
 #    User user
 EOT
+fi
 
 chmod 600 $HOME/.ssh/config
