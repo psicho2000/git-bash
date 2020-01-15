@@ -53,6 +53,7 @@ git config --global alias.remotes 'remote -v'
 echo "Configuring git..."
 # general git config
 git config --global core.excludesfile '~/.gitignore_global'
+git config --global core.editor 'vim'
 # Enable long paths
 ## https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows
 ## See also https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#maximum-path-length-limitation

@@ -2,8 +2,8 @@
 eval `dircolors ~/bash-utils/.dircolors`
 
 # Set default editor
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='vim'
+export VISUAL='vim'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..='cd ..'
