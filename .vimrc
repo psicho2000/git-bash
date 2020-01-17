@@ -35,7 +35,7 @@ noremap <F5> :set list!<CR>
 inoremap <F5> <C-o>:set list!<CR>
 cnoremap <F5> <C-c>:set list!<CR>
 
-" Ctrl+j moves current line down in every mode, Ctrl+k up in every mode
+" Ctrl+j/k moves current line down/up
 nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 inoremap <C-j> <Esc>:m .+1<CR>==gi
