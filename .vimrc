@@ -50,6 +50,7 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " enable blocked mappings on German keyboards for tag navigation
 nmap <F7> <C-]>
+imap <F7> <C-]>
 nmap g<F7> g<C-]>
 " in most Console Hosts, ^t is mapped to new tab - therefore an additional mapping is necessary
 nmap <F6> <C-t>
