@@ -22,9 +22,14 @@ set hidden
 " autocompletion
 set wildmenu
 set wildmode=list:longest,full
+" Search down into subfolders. Provides tab-completion for all file-related tasks.
+set path+=**
 " highlight search results and use search behaviour as in modern browsers
 set hlsearch
 set incsearch
+
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
 
 """"""""""""""""""
 """"" Key mappings
@@ -42,6 +47,12 @@ inoremap <C-j> <Esc>:m .+1<CR>==gi
 inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
+
+" enable blocked mappings on German keyboards for tag navigation
+nmap <F7> <C-]>
+nmap g<F7> g<C-]>
+" in most Console Hosts, ^t is mapped to new tab - therefore an additional mapping is necessary
+nmap <F6> <C-t>
 
 """"""""""""""""
 """"" Automation
