@@ -1,5 +1,9 @@
 " https://github.com/amix/vimrc
 
+""""""""""""""
+""""" Settings
+""""""""""""""
+
 " minimal number of lines to always keep visible above the cursor when scrolling
 set scrolloff=7
 " set history size
@@ -13,7 +17,7 @@ set smartindent
 set expandtab
 " show number in current line and relative number in all others
 set number relativenumber
-" block: Ctrl+V marks whole block (even across EOL) / all (extends block mode): cursor may be additionally placed after EOL
+" block: Ctrl+v marks whole block (even across EOL) / all (extends block mode): cursor may be additionally placed after EOL
 set virtualedit=block
 " when turned on, show \n, \t and space
 set listchars=eol:$,tab:>-,space:·
@@ -28,8 +32,10 @@ set path+=**
 set hlsearch
 set incsearch
 
-" Create the `tags` file (may need to install ctags first)
-command! MakeTags !ctags -R .
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
 
 """"""""""""""""""
 """"" Key mappings
@@ -49,11 +55,18 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " enable blocked mappings on German keyboards for tag navigation
-nmap <F7> <C-]>
-imap <F7> <C-]>
-nmap g<F7> g<C-]>
+nnoremap <F7> <C-]>
+inoremap <F7> <C-]>
+nnoremap g<F7> g<C-]>
 " in most Console Hosts, ^t is mapped to new tab - therefore an additional mapping is necessary
 nmap <F6> <C-t>
+
+""""""""""""""
+""""" Commands
+""""""""""""""
+
+" Create the `tags` file (may need to install ctags first)
+command! MakeTags !ctags -R .
 
 """"""""""""""""
 """"" Automation
