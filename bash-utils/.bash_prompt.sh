@@ -13,9 +13,9 @@ function __git_status {
             # Ensure the index is up to date.
             git update-index --really-refresh -q &>/dev/null;
 
-            # Check for uncommitted changes in the index.
-            if ! $(git diff --quiet --ignore-submodules --cached); then
-                s+='+';
+            # Check for untracked files.
+            if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+                s+='?';
             fi;
 
             # Check for unstaged changes.
@@ -23,16 +23,16 @@ function __git_status {
                 s+='!';
             fi;
 
-            # Check for untracked files.
-            if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-                s+='?';
+            # Check for uncommitted changes in the index.
+            if ! $(git diff --quiet --ignore-submodules --cached); then
+                s+='+';
             fi;
 
             # Check for stashed files.
             if $(git rev-parse --verify refs/stash &>/dev/null); then
                 s+='$';
             fi;
-            
+
             # Check ahead/behind status
             local remote_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
             local local_branch=$(git rev-parse --abbrev-ref HEAD)
