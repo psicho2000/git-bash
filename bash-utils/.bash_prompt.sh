@@ -52,7 +52,6 @@ function __git_status {
                     s+="$behind↓"
                 fi
             fi
-
         fi;
 
         [ -n "${s}" ] && s=" [${s}]";
@@ -60,27 +59,33 @@ function __git_status {
     fi;
 }
 
-PS1='\[\033]0;Git Bash\007\]'  # set window title
-PS1+='\n'                      # new line
-PS1+='\[\033[32m\]'            # change to green
-PS1+='\u@\h '                  # user@host<space>
-PS1+='\[\033[33m\]'            # change to brownish yellow
-PS1+='\w'                      # current working directory
-if test -z "$WINELOADERNOEXEC"
-then
+# Define colors
+green='\[\033[32m\]'
+brown='\[\033[33m\]'
+cyan='\[\033[36m\]'
+blue='\[\033[34m\]'
+reset='\[\033[0m\]'
+
+PS1="\[\033]0;Git Bash\007\]"   # set window title
+PS1+="\n"                       # new line
+PS1+="${green}"                 # change color to green
+PS1+="\u@\h "                   # user@host<space>
+PS1+="${brown}"                 # change color to brownish yellow
+PS1+="\w"                       # current working directory
+if test -z "$WINELOADERNOEXEC"; then
     GIT_EXEC_PATH="$(git --exec-path 2>/dev/null)"
     COMPLETION_PATH="${GIT_EXEC_PATH%/libexec/git-core}"
     COMPLETION_PATH="${COMPLETION_PATH%/lib/git-core}"
     COMPLETION_PATH="$COMPLETION_PATH/share/git/completion"
-    if test -f "$COMPLETION_PATH/git-prompt.sh"
-    then
+    if test -f "$COMPLETION_PATH/git-prompt.sh"; then
         . "$COMPLETION_PATH/git-completion.bash"
         . "$COMPLETION_PATH/git-prompt.sh"
-        PS1+='\[\033[36m\]'  # change color to cyan
-        PS1+='`__git_ps1`'   # bash function
+        PS1+="${cyan}"          # change color to cyan
+        PS1+='`__git_ps1`'      # bash function: branch name
     fi
 fi
-PS1+='\[\033[34m\]`__git_status`' # change color to blue and show git status
-PS1+='\[\033[0m\]'                # change color
-PS1+='\n'                         # new line
-PS1+='$ '                         # prompt: always $
+PS1+="${blue}"                  # change color to blue
+PS1+='`__git_status`'           # show git status
+PS1+="${reset}"                 # reset color
+PS1+="\n"                       # new line
+PS1+="$ "                       # prompt: always $
