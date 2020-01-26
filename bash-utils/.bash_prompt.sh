@@ -2,16 +2,19 @@
 # https://alanbarber.com/post/how-to-customize-the-git-for-windows-bash-shell-prompt/
 # This file is sourced by git-bash in C:\Program Files\Git\etc\profile.d\git-prompt.sh
 
+# git checks are slow on Windows. Therefore disabling currently check of is-inside-git-dir,
+# updating the index and check for stashes. Enable it again when WSL2 is available and test.
+
 function __git_status {
     local s;
     # Check if the current directory is in a Git repository.
     if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
 
         # check if the current directory is in .git before running git checks
-        if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+        #if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
 
             # Ensure the index is up to date.
-            git update-index --really-refresh -q &>/dev/null;
+            #git update-index --really-refresh -q &>/dev/null;
 
             # Check for untracked files.
             if [ -n "$(git ls-files --others --exclude-standard)" ]; then
@@ -29,15 +32,16 @@ function __git_status {
             fi;
 
             # Check for stashed files.
-            if $(git rev-parse --verify refs/stash &>/dev/null); then
-                s+='$';
-            fi;
+            #if $(git rev-parse --verify refs/stash &>/dev/null); then
+            #    s+='$';
+            #fi;
 
             # Check ahead/behind status
             local remote_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
             local local_branch=$(git rev-parse --abbrev-ref HEAD)
-            local ahead=$(git rev-list --right-only --count "$remote_branch"..."$local_branch")
-            local behind=$(git rev-list --left-only --count "$remote_branch"..."$local_branch")
+            local ahead_behind=($(git rev-list --left-right --count origin/git-test...git-test))
+            local ahead=${ahead_behind[1]}
+            local behind=${ahead_behind[0]}
             if [[ $ahead -gt 0 || $behind -gt 0 ]]; then
                 if [[ $ahead -gt 0 ]]; then
                     if [[ ! -z $s ]]; then
@@ -52,7 +56,7 @@ function __git_status {
                     s+="$behind↓"
                 fi
             fi
-        fi;
+        #fi;
 
         [ -n "${s}" ] && s=" [${s}]";
         echo -e "$s";
