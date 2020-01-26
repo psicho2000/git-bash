@@ -2,8 +2,9 @@
 # https://alanbarber.com/post/how-to-customize-the-git-for-windows-bash-shell-prompt/
 # This file is sourced by git-bash in C:\Program Files\Git\etc\profile.d\git-prompt.sh
 
-# git checks are slow on Windows. Therefore disabling currently check of is-inside-git-dir,
-# updating the index and check for stashes. Enable it again when WSL2 is available and test.
+# git checks are slow on Windows. Therefore following checks are currently being disabled:
+# check if is-inside-git-dir, ensure update-index, check for stashes.
+# Enable it again when WSL2 is available and test.
 
 function __git_status {
     local s;
@@ -39,7 +40,7 @@ function __git_status {
             # Check ahead/behind status
             local remote_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
             local local_branch=$(git rev-parse --abbrev-ref HEAD)
-            local ahead_behind=($(git rev-list --left-right --count origin/git-test...git-test))
+            local ahead_behind=($(git rev-list --left-right --count "$remote_branch"..."$local_branch"))
             local ahead=${ahead_behind[1]}
             local behind=${ahead_behind[0]}
             if [[ $ahead -gt 0 || $behind -gt 0 ]]; then

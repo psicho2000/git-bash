@@ -8,6 +8,7 @@ Intended for Git Bash for Windows
 * .inputrc
 * .minttyrc
 * .nanorc
+* .vimrc
 * README.md
 
 ## Usage
