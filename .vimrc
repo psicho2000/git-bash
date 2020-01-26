@@ -41,30 +41,40 @@ let g:netrw_liststyle=3     " tree view
 """"" Key mappings
 """"""""""""""""""
 
-" F5 toggles showing invisible characters
-noremap <F5> :set list!<CR>
-inoremap <F5> <C-o>:set list!<CR>
-cnoremap <F5> <C-c>:set list!<CR>
+" Define a leader key
+let mapleader=","
+
+" Toggle showing invisible characters
+noremap <leader>q :set list!<CR>
+inoremap <leader>q <C-o>:set list!<CR>
+cnoremap <leader>q <C-c>:set list!<CR>
 
 " F4 removes search highlighting
-noremap <F4> :noh<CR>
-inoremap <F4> <C-o>:noh<CR>
-cnoremap <F4> <C-c>:noh<CR>
+noremap <leader>w :nohlsearch<CR>
+inoremap <leader>w <C-o>:nohlsearch<CR>
+cnoremap <leader>w <C-c>:nohlsearch<CR>
 
-" Ctrl+j/k moves current line down/up
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+" leader+j/k moves current line down/up
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+inoremap <leader>j <Esc>:m .+1<CR>==gi
+inoremap <leader>k <Esc>:m .-2<CR>==gi
+vnoremap <leader>j :m '>+1<CR>gv=gv
+vnoremap <leader>k :m '<-2<CR>gv=gv
 
 " enable blocked mappings on German keyboards for tag navigation
-nnoremap <F7> <C-]>
-inoremap <F7> <C-]>
-nnoremap g<F7> g<C-]>
-" in most Console Hosts, ^t is mapped to new tab - therefore an additional mapping is necessary
-nmap <F6> <C-t>
+nnoremap <leader>l <C-]>
+inoremap <leader>l <C-]>
+nnoremap g<leader>l g<C-]>
+" Navigate tag back. In most Console Hosts, ^t is mapped to new tab - therefore an additional mapping is necessary.
+nmap <leader>h <C-t>
+
+" Paste register below/above current line
+nnoremap <leader>p op<Esc>
+nnoremap <leader>P Op<Esc>
+
+" Disable Ex Mode
+:nnoremap Q <Nop>
 
 """"""""""""""
 """"" Commands
