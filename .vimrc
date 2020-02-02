@@ -54,13 +54,13 @@ noremap <leader>w :nohlsearch<CR>
 inoremap <leader>w <C-o>:nohlsearch<CR>
 cnoremap <leader>w <C-c>:nohlsearch<CR>
 
-" leader+j/k moves current line down/up
-nnoremap <leader>j :m .+1<CR>==
-nnoremap <leader>k :m .-2<CR>==
-inoremap <leader>j <Esc>:m .+1<CR>==gi
-inoremap <leader>k <Esc>:m .-2<CR>==gi
-vnoremap <leader>j :m '>+1<CR>gv=gv
-vnoremap <leader>k :m '<-2<CR>gv=gv
+" Ctrl+j/k moves current line down/up
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " enable blocked mappings on German keyboards for tag navigation
 nnoremap <leader>l <C-]>
@@ -70,8 +70,8 @@ nnoremap g<leader>l g<C-]>
 nmap <leader>h <C-t>
 
 " Paste register below/above current line
-nnoremap <leader>p op<Esc>
-nnoremap <leader>P Op<Esc>
+nnoremap <leader>p o<Esc>p<Esc>
+nnoremap <leader>P O<Esc>p<Esc>
 
 " Disable Ex Mode
 :nnoremap Q <Nop>
