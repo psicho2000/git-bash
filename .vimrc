@@ -44,12 +44,16 @@ let g:netrw_liststyle=3     " tree view
 " Define a leader key
 let mapleader=","
 
+" Toggle autoindent/smartindent for pasting
+set pastetoggle=<F2>
+set showmode
+
 " Toggle showing invisible characters
 noremap <leader>q :set list!<CR>
 inoremap <leader>q <C-o>:set list!<CR>
 cnoremap <leader>q <C-c>:set list!<CR>
 
-" F4 removes search highlighting
+" Remove search highlighting
 noremap <leader>w :nohlsearch<CR>
 inoremap <leader>w <C-o>:nohlsearch<CR>
 cnoremap <leader>w <C-c>:nohlsearch<CR>
@@ -62,7 +66,7 @@ inoremap <C-k> <Esc>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 
-" enable blocked mappings on German keyboards for tag navigation
+" Enable blocked mappings on German keyboards for tag navigation
 nnoremap <leader>l <C-]>
 inoremap <leader>l <C-]>
 nnoremap g<leader>l g<C-]>
