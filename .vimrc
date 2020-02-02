@@ -70,8 +70,8 @@ nnoremap g<leader>l g<C-]>
 nmap <leader>h <C-t>
 
 " Paste register below/above current line
-nnoremap <leader>p o<Esc>p<Esc>
-nnoremap <leader>P O<Esc>p<Esc>
+nnoremap <leader>p o<Esc>p
+nnoremap <leader>P O<Esc>p
 
 " Disable Ex Mode
 :nnoremap Q <Nop>
