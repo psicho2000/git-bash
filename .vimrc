@@ -31,6 +31,8 @@ set path+=**
 " highlight search results and use search behaviour as in modern browsers
 set hlsearch
 set incsearch
+" Use global directory for swap files
+set directory^=/tmp//
 
 " Tweaks for browsing
 let g:netrw_banner=0        " disable annoying banner
