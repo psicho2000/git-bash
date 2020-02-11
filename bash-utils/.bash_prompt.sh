@@ -5,6 +5,7 @@
 # git checks are slow on Windows. Therefore following checks are currently being disabled:
 # check if is-inside-git-dir, ensure update-index, check for stashes.
 # Enable it again when WSL2 is available and test.
+# See GOTCHA in: https://www.hanselman.com/blog/HowToMakeAPrettyPromptInWindowsTerminalWithPowerlineNerdFontsCascadiaCodeWSLAndOhmyposh.aspx
 
 function __git_status {
     local s;
@@ -38,23 +39,25 @@ function __git_status {
             #fi;
 
             # Check ahead/behind status
-            local remote_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
-            local local_branch=$(git rev-parse --abbrev-ref HEAD)
-            local ahead_behind=($(git rev-list --left-right --count "$remote_branch"..."$local_branch"))
-            local ahead=${ahead_behind[1]}
-            local behind=${ahead_behind[0]}
-            if [[ $ahead -gt 0 || $behind -gt 0 ]]; then
-                if [[ $ahead -gt 0 ]]; then
-                    if [[ ! -z $s ]]; then
-                        s+=" "
+            if [[ -n $(git symbolic-ref --quiet --short HEAD) ]]; then
+                local remote_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
+                local local_branch=$(git rev-parse --abbrev-ref HEAD)
+                local ahead_behind=($(git rev-list --left-right --count "$remote_branch"..."$local_branch"))
+                local ahead=${ahead_behind[1]}
+                local behind=${ahead_behind[0]}
+                if [[ $ahead -gt 0 || $behind -gt 0 ]]; then
+                    if [[ $ahead -gt 0 ]]; then
+                        if [[ ! -z $s ]]; then
+                            s+=" "
+                        fi
+                        s+="$ahead↑"
                     fi
-                    s+="$ahead↑"
-                fi
-                if [[ $behind -gt 0 ]]; then
-                    if [[ ! -z $s ]]; then
-                        s+=" "
+                    if [[ $behind -gt 0 ]]; then
+                        if [[ ! -z $s ]]; then
+                            s+=" "
+                        fi
+                        s+="$behind↓"
                     fi
-                    s+="$behind↓"
                 fi
             fi
         #fi;

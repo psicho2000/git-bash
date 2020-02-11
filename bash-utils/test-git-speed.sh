@@ -19,4 +19,4 @@ measure "git rev-parse --abbrev-ref --symbolic-full-name @{u}"
 measure "git rev-parse --abbrev-ref HEAD"
 measure "git rev-list --right-only --count origin/master...master"
 measure "git rev-list --left-only --count origin/master...master"
-
+measure "git symbolic-ref --quiet --short HEAD"
