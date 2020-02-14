@@ -67,7 +67,7 @@ function explain() {
     fi
     declare -f $1
 }
-# create a directory recursively an cd to it
+# create a directory recursively and cd to it
 function make-dir() {
         mkdir -p "$@" && cd "$_";
 }
@@ -94,6 +94,7 @@ function history-search() {
 . ~/bash-utils/.settings
 . ~/bash-utils/.project_dir.sh
 . ~/bash-utils/.login.sh
+#. ~/bash-utils/theme.bash
 
 # ng autocomplete
 _ng_completion () {
