@@ -15,5 +15,3 @@ __cfg push -u origin HEAD
 $HOME/bash-utils/configure-git.sh
 $HOME/bash-utils/configure-ssh.sh
 [[ ! -f "$HOME/bash-utils/.settings" ]] && cp $HOME/bash-utils/.settings.example $HOME/bash-utils/.settings
-mkdir -p $HOME/.config/git
-cp $HOME/bash-utils/.bash_prompt.sh $HOME/.config/git/git-prompt.sh
