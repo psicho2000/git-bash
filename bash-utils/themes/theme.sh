@@ -1,6 +1,6 @@
 #!/bin/bash
 
-THEME_CONFIG_FILE="$HOME/bash-utils/themes/theme"
+THEME_CONFIG_FILE="$HOME/bash-utils/themes/.theme"
 
 theme() {
     case "$1" in

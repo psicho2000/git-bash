@@ -73,6 +73,7 @@ function __theme_classic {
     brown='\[\033[33m\]'
     cyan='\[\033[36m\]'
     blue='\[\033[34m\]'
+    purple='\[\033[35m\]'
     reset='\[\033[0m\]'
     
     PS1="\[\033]0;Git Bash\007\]"   # set window title
@@ -95,6 +96,8 @@ function __theme_classic {
     fi
     PS1+="${blue}"                  # change color to blue
     PS1+='`__git_status`'           # show git status
+    PS1+="${purple}"                # change color to purple
+    PS1+=" \t"                       # current time in 24h format
     PS1+="${reset}"                 # reset color
     PS1+="\n"                       # new line
     PS1+="$ "                       # prompt: always $

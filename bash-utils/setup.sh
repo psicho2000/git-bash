@@ -15,6 +15,4 @@ __cfg push -u origin HEAD
 $HOME/bash-utils/configure-git.sh
 $HOME/bash-utils/configure-ssh.sh
 [[ ! -f "$HOME/bash-utils/.settings" ]] && cp $HOME/bash-utils/.settings.example $HOME/bash-utils/.settings
-exec bash -l
-[[ ! -f "$HOME/bash-utils/themes/.theme" ]] && theme classic
-exec bash -l
+[[ ! -f "$HOME/bash-utils/themes/.theme" ]] && . "$HOME/bash-utils/themes/theme.sh" && theme classic
