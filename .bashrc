@@ -90,12 +90,6 @@ function history-search() {
     history | grep $*
 }
 
-# Include last so that common aliases can be overridden in custom settings
-. ~/bash-utils/.settings
-. ~/bash-utils/.project_dir.sh
-. ~/bash-utils/.login.sh
-. ~/bash-utils/themes/theme.sh
-
 # ng autocomplete
 _ng_completion () {
     local cur="${COMP_WORDS[COMP_CWORD]}"
@@ -106,3 +100,11 @@ _ng_completion () {
     fi
 }
 complete -o default -F _ng_completion ng
+
+# Include last so that common aliases can be overridden in custom settings
+. ~/bash-utils/.settings
+. ~/bash-utils/.project_dir.sh
+. ~/bash-utils/.login.sh
+. ~/bash-utils/colors.sh
+. ~/bash-utils/themes/theme.sh
+
