@@ -1,7 +1,7 @@
 #!/bin/bash
 # Configure it in ~/.ssh/config
 
-function login() {
+login() {
     local host=$1
 
     # if arg is provided and host exists, login

@@ -2,32 +2,36 @@ Intended for Git Bash for Windows
 
 ## Contents
 * bash-utils/
-* .bashrc
-* .gitignore
-* .gitignore_global
-* .inputrc
-* .minttyrc
-* .nanorc
-* .vimrc
-* README.md
+    * .bashrc
+    * .gitignore
+    * .gitignore_global
+    * .inputrc
+    * .minttyrc
+    * .nanorc
+    * .vimrc
+    * README.md
 
 ## Usage
-1. Install Git for Windows*
-1. Log in to you git repo to be able to configure push (see `setup.sh`)
-1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
-   (or call `./bash-utils/setup.sh`)
-1. Configure `.settings`
-1. Configure `~/.ssh/config` (for more info, see https://linux.die.net/man/5/ssh_config)
-   On Windows, make sure all keyfiles and config itself have appropriate rights:
-       .ssh > Properties > Security > Advanced
-           * Disable inheritance
-           * Only current user may access this file
-1. Log into git-bash again
-1. (Optional) Add a repository specific URL (in case of ssh: `"git@github.com:<username>/")` shorthand, e.g.:
-   ```
-    [url "https://github.com/<username>/"]
-        insteadOf = "gh:"
-   ```
+    1. Install Git for Windows*
+    1. Log in to you git repo to be able to configure push (see `setup.sh`)
+    1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
+       (or call `./bash-utils/setup.sh`)
+    1. Configure `.settings`
+    1. Configure `~/.ssh/config` (for more info, see https://linux.die.net/man/5/ssh_config)
+       On Windows, make sure all keyfiles and config itself have appropriate rights:
+           .ssh > Properties > Security > Advanced
+               * Disable inheritance
+               * Only current user may access this file
+    1. `exec bash -l` (i.e. re-login into git-bash)
+    1. (Optional) If using pureline:
+      1. Install a powerline font, e.g. Cascadia Code PL from https://github.com/microsoft/cascadia-code
+      1. Configure `themes/.pureline.conf`
+    1. (Optional) Add a repository specific URL (in case of ssh: `"git@github.com:<username>/")` shorthand in .gitconfig, e.g.:
+       ```
+        [url "https://github.com/<username>/"]
+            insteadOf = "gh:"
+       ```
+    1. Theme can be chosen using `theme` command
 
 *_To enable nano, check the appropriate box during installation. setup.sh takes care that line endings of .nanorc are Unix style (LF)._
 

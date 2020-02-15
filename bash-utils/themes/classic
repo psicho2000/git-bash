@@ -1,0 +1,103 @@
+#!/bin/bash
+# https://alanbarber.com/post/how-to-customize-the-git-for-windows-bash-shell-prompt/
+# This file is sourced by git-bash in C:\Program Files\Git\etc\profile.d\git-prompt.sh
+
+# git checks are slow on Windows. Therefore following checks are currently being disabled:
+# check if is-inside-git-dir, ensure update-index, check for stashes.
+# Enable it again when WSL2 is available and test.
+# See GOTCHA in: https://www.hanselman.com/blog/HowToMakeAPrettyPromptInWindowsTerminalWithPowerlineNerdFontsCascadiaCodeWSLAndOhmyposh.aspx
+
+function __git_status {
+    local s;
+    # Check if the current directory is in a Git repository.
+    if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
+
+        # check if the current directory is in .git before running git checks
+        #if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
+
+            # Ensure the index is up to date.
+            #git update-index --really-refresh -q &>/dev/null;
+
+            # Check for untracked files.
+            if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+                s+='?';
+            fi;
+
+            # Check for unstaged changes.
+            if ! $(git diff-files --quiet --ignore-submodules --); then
+                s+='!';
+            fi;
+
+            # Check for uncommitted changes in the index.
+            if ! $(git diff --quiet --ignore-submodules --cached); then
+                s+='+';
+            fi;
+
+            # Check for stashed files.
+            #if $(git rev-parse --verify refs/stash &>/dev/null); then
+            #    s+='$';
+            #fi;
+
+            # Check ahead/behind status
+            if [[ -n $(git symbolic-ref --quiet --short HEAD) ]]; then
+                local remote_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
+                local local_branch=$(git rev-parse --abbrev-ref HEAD)
+                local ahead_behind=($(git rev-list --left-right --count "$remote_branch"..."$local_branch"))
+                local ahead=${ahead_behind[1]}
+                local behind=${ahead_behind[0]}
+                if [[ $ahead -gt 0 || $behind -gt 0 ]]; then
+                    if [[ $ahead -gt 0 ]]; then
+                        if [[ ! -z $s ]]; then
+                            s+=" "
+                        fi
+                        s+="$ahead↑"
+                    fi
+                    if [[ $behind -gt 0 ]]; then
+                        if [[ ! -z $s ]]; then
+                            s+=" "
+                        fi
+                        s+="$behind↓"
+                    fi
+                fi
+            fi
+        #fi;
+
+        [ -n "${s}" ] && s=" [${s}]";
+        echo -e "$s";
+    fi;
+}
+
+function __theme_classic {
+    # Define colors
+    green='\[\033[32m\]'
+    brown='\[\033[33m\]'
+    cyan='\[\033[36m\]'
+    blue='\[\033[34m\]'
+    reset='\[\033[0m\]'
+    
+    PS1="\[\033]0;Git Bash\007\]"   # set window title
+    PS1+="\n"                       # new line
+    PS1+="${green}"                 # change color to green
+    PS1+="\u@\h "                   # user@host<space>
+    PS1+="${brown}"                 # change color to brownish yellow
+    PS1+="\w"                       # current working directory
+    if test -z "$WINELOADERNOEXEC"; then
+        GIT_EXEC_PATH="$(git --exec-path 2>/dev/null)"
+        COMPLETION_PATH="${GIT_EXEC_PATH%/libexec/git-core}"
+        COMPLETION_PATH="${COMPLETION_PATH%/lib/git-core}"
+        COMPLETION_PATH="$COMPLETION_PATH/share/git/completion"
+        if test -f "$COMPLETION_PATH/git-prompt.sh"; then
+            . "$COMPLETION_PATH/git-completion.bash"
+            . "$COMPLETION_PATH/git-prompt.sh"
+            PS1+="${cyan}"          # change color to cyan
+            PS1+='`__git_ps1`'      # bash function: branch name
+        fi
+    fi
+    PS1+="${blue}"                  # change color to blue
+    PS1+='`__git_status`'           # show git status
+    PS1+="${reset}"                 # reset color
+    PS1+="\n"                       # new line
+    PS1+="$ "                       # prompt: always $
+}
+
+PROMPT_COMMAND=__theme_classic

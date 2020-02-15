@@ -94,7 +94,7 @@ function history-search() {
 . ~/bash-utils/.settings
 . ~/bash-utils/.project_dir.sh
 . ~/bash-utils/.login.sh
-. ~/bash-utils/pureline ~/bash-utils/.pureline.conf
+. ~/bash-utils/themes/theme.sh
 
 # ng autocomplete
 _ng_completion () {
