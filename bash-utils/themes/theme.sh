@@ -8,6 +8,10 @@ theme() {
             echo ". ~/bash-utils/themes/classic" > "$THEME_CONFIG_FILE"
             exec bash -l
             ;;
+        diesire)
+            echo ". ~/bash-utils/themes/diesire" > "$THEME_CONFIG_FILE"
+            exec bash -l
+            ;;
         pureline)
             echo ". ~/bash-utils/themes/pureline ~/bash-utils/themes/.pureline.conf" > "$THEME_CONFIG_FILE"
             exec bash -l
@@ -17,7 +21,7 @@ theme() {
 
 _theme_completion() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=( $(compgen -W "classic pureline" -- ${cur}) )
+    COMPREPLY=( $(compgen -W "classic diesire pureline" -- ${cur}) )
     return 0
 }
 
