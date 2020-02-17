@@ -41,7 +41,8 @@ git config --global alias.last 'log -1 --stat HEAD'
 git config --global alias.contributors 'shortlog --summary --numbered'
 
 ##### Editing
-git config --global alias.chmod '!f() { git update-index --chmod=$1 "$2"; }; f'
+# Change permissions
+git config --global alias.chmod '!f() { git update-index --chmod=$1 "`pwd`/$2"; }; f'
 
 ##### Misc
 # Status
