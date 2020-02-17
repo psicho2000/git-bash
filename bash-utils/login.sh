@@ -28,4 +28,4 @@ _login_completion() {
 }
 
 alias l='login'
-complete -F _login_completion login l ssh scp
+complete -F _login_completion login l

@@ -13,25 +13,26 @@ Intended for Git Bash for Windows
 
 ## Usage
     1. Install Git for Windows*
-    1. Log in to you git repo to be able to configure push (see `setup.sh`)
     1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
        (or call `./bash-utils/setup.sh`)
+### Optional
     1. Configure `.settings`
     1. Configure `~/.ssh/config` (for more info, see https://linux.die.net/man/5/ssh_config)
        On Windows, make sure all keyfiles and config itself have appropriate rights:
            .ssh > Properties > Security > Advanced
                * Disable inheritance
                * Only current user may access this file
-    1. `exec bash -l` (i.e. re-login into git-bash)
-    1. (Optional) If using pureline:
+    1. Theme can be chosen using `theme` command. If using pureline:
       1. Install a powerline font, e.g. Cascadia Code PL from https://github.com/microsoft/cascadia-code
       1. Configure `themes/.pureline.conf`
-    1. (Optional) Add a repository specific URL (in case of ssh: `"git@github.com:<username>/")` shorthand in .gitconfig, e.g.:
+    1. Add a repository specific URL (in case of ssh: `"git@github.com:<username>/")` shorthand in .gitconfig, e.g.:
        ```
         [url "https://github.com/<username>/"]
             insteadOf = "gh:"
        ```
-    1. Theme can be chosen using `theme` command
+    1. If you have writing access to the repo, add a remote:
+      1. Log in to you git repo to be able to configure push
+      1. `cfg push -u origin HEAD`
 
 *_To enable nano, check the appropriate box during installation. setup.sh takes care that line endings of .nanorc are Unix style (LF)._
 
@@ -46,7 +47,7 @@ Workaround: use store for private credentials, manager for team credentials, swa
 3. Swap with provided aliases `team`, `priv` or use `push_wiki()`
 4. To change credentials in Windows Credential Manager, open the search box and type "credential manager" (en) or "Anmeldeinformationsverwaltung" (de).
 
-## Creating private key authentication (e.g. for .login.sh)
+## Creating private key authentication (e.g. for login.sh)
 * On local system
   * `ssh-keygen.exe -t rsa -C "your.email@example.com"`
   * Copy `~/.ssh/id_rsa.pub` to remote system

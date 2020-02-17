@@ -11,7 +11,6 @@ __cfg config --local core.autocrlf input
 __cfg config --local status.showUntrackedFiles no
 __cfg checkout
 __cfg pull
-__cfg push -u origin HEAD
 $HOME/bash-utils/configure-git.sh
 $HOME/bash-utils/configure-ssh.sh
 [[ ! -f "$HOME/bash-utils/.settings" ]] && cp $HOME/bash-utils/.settings.example $HOME/bash-utils/.settings
