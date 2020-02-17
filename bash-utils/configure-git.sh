@@ -40,6 +40,9 @@ git config --global alias.last 'log -1 --stat HEAD'
 # List contributors with number of commits
 git config --global alias.contributors 'shortlog --summary --numbered'
 
+##### Editing
+git config --global alias.chmod '!f() { git update-index --chmod=$1 "$2"; }; f'
+
 ##### Misc
 # Status
 git config --global alias.s 'status -sb'
