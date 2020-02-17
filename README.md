@@ -24,6 +24,7 @@ Intended for Git Bash for Windows
                * Only current user may access this file
     1. Theme can be chosen using `theme` command. If using pureline:
       1. Install a powerline font, e.g. Cascadia Code PL from https://github.com/microsoft/cascadia-code
+      1. Use the chosen powerline font in your desired Console Host
       1. Configure `themes/.pureline.conf`
     1. Add a repository specific URL (in case of ssh: `"git@github.com:<username>/")` shorthand in .gitconfig, e.g.:
        ```
