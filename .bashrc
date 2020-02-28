@@ -14,6 +14,7 @@ alias ~='cd ~' # `cd` is probably faster to type though
 alias -- -='cd -'
 
 alias cfg='/mingw64/bin/git --git-dir=$HOME/.git-bash --work-tree=$HOME'
+alias count='~/bash-utils/count.sh'
 alias d='winpty docker'
 alias dc='winpty docker-compose'
 alias dce='docker-compose-exec'
@@ -107,4 +108,3 @@ complete -o default -F _ng_completion ng
 . ~/bash-utils/login.sh
 . ~/bash-utils/colors.sh
 . ~/bash-utils/themes/theme.sh
-
