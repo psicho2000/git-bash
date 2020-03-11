@@ -190,7 +190,7 @@ function git_module {
             local number_behind_ahead="$(git rev-list --count --left-right '@{upstream}...HEAD' 2>/dev/null)"
             local number_ahead="${number_behind_ahead#*	}"
             local number_behind="${number_behind_ahead%	*}"
-            if [[ "$number_ahead" -ne 0 ]] || [[ "$number_behind" -ne 0 ]]; then
+            if [[ "$number_ahead" -ne 0 || "$number_behind" -ne 0 ]]; then
                 if [ ! "$number_ahead" -eq 0 ]; then
                     content+=" $number_ahead${PL_SYMBOLS[git_ahead]}"
                 fi
