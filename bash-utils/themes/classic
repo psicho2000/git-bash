@@ -39,7 +39,7 @@ function __git_status {
             #fi;
 
             # Check ahead/behind status
-            local ahead_behind=($(git rev-list --left-right --count "@{upstream}"..."HEAD"))
+            local ahead_behind=($(git rev-list --left-right --count "@{upstream}"..."HEAD" 2>/dev/null))
             local ahead=${ahead_behind[1]}
             local behind=${ahead_behind[0]}
             if [[ $ahead -gt 0 || $behind -gt 0 ]]; then
