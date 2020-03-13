@@ -39,25 +39,21 @@ function __git_status {
             #fi;
 
             # Check ahead/behind status
-            if [[ -n $(git symbolic-ref --quiet --short HEAD) ]]; then
-                local remote_branch=$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
-                local local_branch=$(git rev-parse --abbrev-ref HEAD)
-                local ahead_behind=($(git rev-list --left-right --count "$remote_branch"..."$local_branch"))
-                local ahead=${ahead_behind[1]}
-                local behind=${ahead_behind[0]}
-                if [[ $ahead -gt 0 || $behind -gt 0 ]]; then
-                    if [[ $ahead -gt 0 ]]; then
-                        if [[ ! -z $s ]]; then
-                            s+=" "
-                        fi
-                        s+="$ahead↑"
+            local ahead_behind=($(git rev-list --left-right --count "@{upstream}"..."HEAD"))
+            local ahead=${ahead_behind[1]}
+            local behind=${ahead_behind[0]}
+            if [[ $ahead -gt 0 || $behind -gt 0 ]]; then
+                if [[ $ahead -gt 0 ]]; then
+                    if [[ ! -z $s ]]; then
+                        s+=" "
                     fi
-                    if [[ $behind -gt 0 ]]; then
-                        if [[ ! -z $s ]]; then
-                            s+=" "
-                        fi
-                        s+="$behind↓"
+                    s+="$ahead↑"
+                fi
+                if [[ $behind -gt 0 ]]; then
+                    if [[ ! -z $s ]]; then
+                        s+=" "
                     fi
+                    s+="$behind↓"
                 fi
             fi
         #fi;
