@@ -33,6 +33,8 @@ set hlsearch
 set incsearch
 " Use global directory for swap files
 set directory^=/tmp//
+" Enable modelines in files
+set modeline
 
 " Tweaks for browsing
 let g:netrw_banner=0        " disable annoying banner
