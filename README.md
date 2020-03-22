@@ -56,5 +56,9 @@ Workaround: use store for private credentials, manager for team credentials, swa
   * `touch ~/.ssh/authorized_keys`
   * `cat id_rsa.pub >> ~/.ssh/authorized_keys`
 
+## Some note worthy tools
+https://ranger.github.io/
+https://github.com/jesseduffield/lazydocker
+https://github.com/jesseduffield/lazygit
 
 Thanks to https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
