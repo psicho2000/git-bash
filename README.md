@@ -32,7 +32,7 @@ Intended for Git Bash for Windows
             insteadOf = "gh:"
        ```
     1. If you have writing access to the repo, add a remote:
-      1. Log in to you git repo to be able to configure push
+      1. Log in to your git repo to be able to configure push
       1. `cfg push -u origin HEAD`
 
 *_To enable nano, check the appropriate box during installation. setup.sh takes care that line endings of .nanorc are Unix style (LF)._
