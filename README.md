@@ -2,14 +2,14 @@ Intended for Git Bash for Windows
 
 ## Contents
 * bash-utils/
-    * .bashrc
-    * .gitignore
-    * .gitignore_global
-    * .inputrc
-    * .minttyrc
-    * .nanorc
-    * .vimrc
-    * README.md
+* .bashrc
+* .gitignore
+* .gitignore_global
+* .inputrc
+* .minttyrc
+* .nanorc
+* .vimrc
+* README.md
 
 ## Usage
     1. Install Git for Windows*
