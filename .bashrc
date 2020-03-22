@@ -75,6 +75,38 @@ function push_wiki() {
     team
 }
 
+# docker-compose completion
+__get_docker_compose_services() {
+    echo $(egrep -h '^[[:blank:]]{2}[a-z-]+:' docker-compose*.yml | sort --unique | tr -d '[:space:]' | tr ':' ' ')
+}
+__docker_compose_completion() {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    local commands="build bundle config create down events exec help images kill logs pause port ps pull push restart rm run start stop top unpause up version"
+    if [[ "$COMP_CWORD" -eq 1 ]]; then
+        COMPREPLY=($(compgen -W "${commands}" -- ${cur}))
+    elif [[ "$COMP_CWORD" -gt 1 ]]; then
+        case ${COMP_WORDS[1]} in
+        build | create | events | exec | images | kill | logs | pause | port | ps | pull | push | restart | rm | run | start | stop | top | unpause | up)
+            local services=$(__get_docker_compose_services)
+            COMPREPLY=($(compgen -W "${services}" -- ${cur}))
+            ;;
+        help)
+            COMPREPLY=($(compgen -W "${commands}" -- ${cur}))
+            ;;
+        *) ;;
+        esac
+    fi
+    return 0
+}
+__docker_compose_alias_completion() {
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    local services=$(__get_docker_compose_services)
+    COMPREPLY=($(compgen -W "${services}" -- ${cur}))
+    return 0
+}
+complete -F __docker_compose_completion dc docker-compose
+complete -F __docker_compose_alias_completion dcl dcu dce
+
 # History stuff
 alias h='history'
 alias hs="history-search"
