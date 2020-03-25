@@ -18,9 +18,9 @@ alias dgrep='docker-ps-format|grep'
 alias di='docker-inspect'
 alias dps='docker-ps-format'
 alias dpsn='docker-ps-format-sort-by-name'
-alias g='./gradlew' # requires gradle and gradle wrapped projects
-#alias g='git'
+alias g='git'
 alias greppath='path|grep -i'
+alias gw='./gradlew' # requires gradle and gradle wrapped projects
 alias ll='ls -lAh --group-directories-first'
 alias md='make-dir'
 alias myip='curl -s ifconfig.me'
@@ -29,6 +29,9 @@ alias priv='git config --global credential.helper store'
 alias reload='exec bash -l'
 alias team='git config --global credential.helper manager'
 alias wiki='cd $wiki_dir'
+
+# autocomplete alternate git command
+__git_complete g __git_main
 
 function docker-compose-exec() {
     winpty docker-compose exec "$1" bash

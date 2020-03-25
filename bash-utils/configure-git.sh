@@ -20,11 +20,15 @@ git config --global alias.amend 'commit --amend -C HEAD'
 # Push unpublished branch
 git config --global alias.publish '!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 
-##### Resetting
+##### Resetting & cleanup
 # Undo Commit
 git config --global alias.undo-commit 'reset --soft HEAD~1'
 # Unstage a file
 git config --global alias.unstage 'reset HEAD --'
+# Drop the given number of commits, defaults to 1
+git config --global alias.drop-commits '!f() { [[ $1 =~ ^[0-9]+$ ]] && num=$1 || num=1; git reset --hard HEAD~$num; }; f'
+# Delete local branches without a remote
+git config --global alias.prune-branches '!git remote prune origin && git branch -vv | grep '"'"': gone]'"'"' | awk '"'"'{print $1}'"'"' | xargs -r git branch -D'
 
 ##### Logs
 # One-line log including branching in/out (last 30 commits)
@@ -53,11 +57,14 @@ git config --global alias.alias '!f() { git config --get-regexp "alias.$1*"; }; 
 git config --global alias.tags 'tag -l'
 git config --global alias.branches 'branch -a'
 git config --global alias.remotes 'remote -v'
+git config --global alias.local-branches '!git branch -vv | grep ": gone]"'
 
 echo "Configuring git..."
 # general git config
 git config --global core.excludesfile '~/.gitignore_global'
 git config --global core.editor 'vim'
+git config --global help.autocorrect 20
+
 # Enable long paths
 ## https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows
 ## See also https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#maximum-path-length-limitation
