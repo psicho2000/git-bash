@@ -17,6 +17,8 @@ git config --global alias.ac '!git add . && git commit -am'
 git config --global alias.ci 'commit -am'
 # Amend staged changes to the last commit, keeping the same commit message
 git config --global alias.amend 'commit --amend -C HEAD'
+# Rename last commit
+git config --global alias.rename 'commit --amend'
 # Push unpublished branch
 git config --global alias.publish '!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 
@@ -27,6 +29,8 @@ git config --global alias.undo-commit 'reset --soft HEAD~1'
 git config --global alias.unstage 'reset HEAD --'
 # Drop the given number of commits, defaults to 1
 git config --global alias.drop-commits '!f() { [[ $1 =~ ^[0-9]+$ ]] && num=$1 || num=1; git reset --hard HEAD~$num; }; f'
+# Join the given number of commits, defaults to 2
+git config --global alias.join '!f() { [[ $1 =~ ^[0-9]+$ ]] && num=$1 || num=2; git rebase -i HEAD~$num; }; f'
 # Delete local branches without a remote
 git config --global alias.prune-branches '!git remote prune origin && git branch -vv | grep '"'"': gone]'"'"' | awk '"'"'{print $1}'"'"' | xargs -r git branch -D'
 
