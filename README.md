@@ -14,6 +14,7 @@ Intended for Git Bash for Windows
 ## Usage
     1. Install Git for Windows*
     1. `curl -Lks https://bit.ly/setup-cfg | /bin/bash`
+       `curl -Lks https://vipc.de/setup-cfg | /bin/bash` (alternatively)
        (or call `./bash-utils/setup.sh`)
 ### Optional
     1. Configure `.settings`
