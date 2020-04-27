@@ -5,6 +5,14 @@ eval `dircolors ~/bash-utils/.dircolors`
 export EDITOR='vim'
 export VISUAL='vim'
 
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ~='cd ~' # `cd` is probably faster to type though
+alias -- -='cd -'
+
 alias cfg='/mingw64/bin/git --git-dir=$HOME/.git-bash --work-tree=$HOME'
 alias count='~/bash-utils/count.sh'
 alias d='winpty docker'
@@ -84,7 +92,12 @@ function push_wiki() {
 
 # docker-compose completion
 __get_docker_compose_services() {
-    echo $(egrep -h '^[[:blank:]]{2}[a-z-]+:' docker-compose*.yml | sort --unique | tr -d '[:space:]' | tr ':' ' ')
+    if ls docker-compose* 1> /dev/null 2>&1; then
+        echo $(egrep -h '^[[:blank:]]{2}[a-z-]+:' docker-compose*.yml | sort --unique | tr -d '[:space:]' | tr ':' ' ')
+    else
+        # we are not in a directory with docker-compose* files
+        echo ""
+    fi
 }
 __docker_compose_completion() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
@@ -112,7 +125,7 @@ __docker_compose_alias_completion() {
     return 0
 }
 complete -F __docker_compose_completion dc docker-compose
-complete -F __docker_compose_alias_completion dcl dcu dce
+complete -F __docker_compose_alias_completion dcl dcu dce dcer
 
 # History stuff
 alias h='history'
@@ -139,4 +152,3 @@ complete -o default -F _ng_completion ng
 . ~/bash-utils/login.sh
 . ~/bash-utils/colors.sh
 . ~/bash-utils/themes/theme.sh
-. ~/bash-utils/cd.sh
