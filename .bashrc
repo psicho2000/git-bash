@@ -10,6 +10,7 @@ alias count='~/bash-utils/count.sh'
 alias d='winpty docker'
 alias dc='winpty docker-compose'
 alias dce='docker-compose-exec'
+alias dcer='docker-compose-exec-root'
 alias dcl='winpty docker-compose logs -f --tail 500'
 alias dcu='docker-compose-update'
 alias de='docker-exec'
@@ -35,6 +36,9 @@ __git_complete g __git_main
 
 function docker-compose-exec() {
     winpty docker-compose exec "$1" bash
+}
+function docker-compose-exec-root() {
+    winpty docker-compose exec -u root "$1" bash
 }
 function docker-compose-update() {
     winpty docker-compose stop $*
