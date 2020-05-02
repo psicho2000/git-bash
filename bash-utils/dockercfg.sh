@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias d='winpty docker'
 alias dc='winpty docker-compose'
 alias dccp='docker-compose-copy'
