@@ -1,6 +1,14 @@
 #!/bin/bash
 
+# docker
 alias d='winpty docker'
+alias de='docker-exec'
+alias dgrep='docker-ps-format|grep'
+alias di='docker-inspect'
+alias dps='docker-ps-format'
+alias dpsn='docker-ps-format-sort-by-name'
+
+# docker-compose
 alias dc='winpty docker-compose'
 alias dccp='docker-compose-copy'
 alias dce='docker-compose-exec'
@@ -9,11 +17,6 @@ alias dcl='winpty docker-compose logs -f --tail 500'
 alias dcls='docker-compose-list'
 alias dci='docker-compose-inspect'
 alias dcu='docker-compose-update'
-alias de='docker-exec'
-alias dgrep='docker-ps-format|grep'
-alias di='docker-inspect'
-alias dps='docker-ps-format'
-alias dpsn='docker-ps-format-sort-by-name'
 
 function docker-compose-copy() {
     if [ "$#" -ne 2 ]; then
