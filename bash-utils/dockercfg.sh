@@ -52,7 +52,7 @@ dcls    list directory content (default: /)
         args: servicename [directory]
 dci     inspect a service
         args: servicename
-dcu     update any number of services (stop, pull and up)
+dcu     update any number of services (pull and up)
         args: [servicename...]
 EOF
 }
@@ -105,7 +105,6 @@ docker-compose-inspect() {
 }
 
 docker-compose-update() {
-    docker-compose stop $*
     docker-compose pull $*
     docker-compose up -d $*
 }
