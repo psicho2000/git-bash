@@ -2,7 +2,7 @@
 
 alias pj='project-dir'
 
-function project-dir() {
+project-dir() {
     if [ -z "$1" ]; then
         cd $project_base_dir
         cat << EOF

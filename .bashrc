@@ -25,7 +25,7 @@ alias myipv6='curl -s ifconfig.co'
 alias reload='exec bash -l'
 alias wiki='cd $wiki_dir'
 
-function explain() {
+explain() {
     alias_result=$(alias $1 2>&1)
     if [[ ! $alias_result =~ "not found" ]]; then
         echo $alias_result
@@ -40,16 +40,16 @@ function explain() {
 alias h='history'
 alias hs="history-search"
 alias hsi='history-search -i'
-function history-search() {
+history-search() {
     history | grep $*
 }
 
 # create a directory recursively and cd to it
-function make-dir() {
+make-dir() {
         mkdir -p "$@" && cd "$_";
 }
 
-function path() {
+path() {
     echo $PATH|sed -E 's/:/\n/g'
 }
 
@@ -71,7 +71,7 @@ alias g='git'
 alias priv='git config --global credential.helper store'
 alias team='git config --global credential.helper manager'
 
-function push_wiki() {
+push_wiki() {
     priv
     wiki
     git commit -am "$1"
