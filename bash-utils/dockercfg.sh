@@ -2,6 +2,7 @@
 
 # docker
 alias d='docker'
+alias dal="docker-aliases"
 alias de='docker-exec'
 alias dgrep='docker-ps-format|grep'
 alias di='docker-inspect'
@@ -17,6 +18,44 @@ alias dcl='docker-compose logs -f --tail 500'
 alias dcls='docker-compose-list'
 alias dci='docker-compose-inspect'
 alias dcu='docker-compose-update'
+
+docker-aliases() {
+    cat <<EOF
+docker aliases
+d       docker
+        args: see docker
+dal     print this help
+        args: <none>
+de      enter service's bash as default user
+        args: container
+dgrep   grep docker ps
+        args: string
+di      inspect a container
+        args: substring of image name
+dps     formatted docker ps, sorted by status time
+        args: options of docker ps
+dpsn    formatted docker ps, sorted by image name
+        args: options of docker ps
+
+docker compose aliases (autocompletion available for all commands)
+dc      docker-compose
+        args: see docker-compose
+dccp    copy from or to service
+        args: source target
+dce     enter service's bash as default user
+        args: servicename
+dcer    enter service's bash as root
+        args: servicename
+dcl     log with follow, starting at last 500 lines
+        args: [servicename...]
+dcls    list directory content (default: /)
+        args: servicename [directory]
+dci     inspect a service
+        args: servicename
+dcu     update any number of services (stop, pull and up)
+        args: [servicename...]
+EOF
+}
 
 docker-compose-copy() {
     if [ "$#" -ne 2 ]; then
@@ -48,32 +87,41 @@ docker-compose-copy() {
         docker cp $1 "$(docker-compose ps -q $service)":$path
     fi
 }
+
 docker-compose-exec() {
     docker-compose exec "$1" bash
 }
+
 docker-compose-exec-root() {
     docker-compose exec -u root "$1" bash
 }
+
 docker-compose-list() {
     docker-compose exec "$1" sh -c "ls -la --color=auto $2"
 }
+
 docker-compose-inspect() {
     docker inspect "$(docker-compose ps -q $1)" | less
 }
+
 docker-compose-update() {
     docker-compose stop $*
     docker-compose pull $*
     docker-compose up -d $*
 }
+
 docker-exec() {
     docker exec -it "$1" bash
 }
+
 docker-inspect() {
   docker ps|grep $1|awk -F'[[:space:]]+' '{print $1}'|xargs docker inspect|less
 }
+
 docker-ps-format() {
     docker ps $* --format 'table {{.ID}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'
 }
+
 docker-ps-format-sort-by-name() {
     docker-ps-format $*|awk 'NR<2{print $0;next}{print $0| "sort -k2"}'
 }
@@ -151,6 +199,7 @@ __filedir_copied() {
         COMPREPLY+=("${toks[@]}")
     fi
 }
+
 __docker_compose_copy_completion() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
     __docker_compose_alias_completion
