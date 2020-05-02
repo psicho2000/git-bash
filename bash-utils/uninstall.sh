@@ -8,4 +8,5 @@ rm .gitignore_global
 rm .inputrc
 rm .minttyrc
 rm .nanorc
+rm .vimrc
 rm README.md
