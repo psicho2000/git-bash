@@ -10,7 +10,6 @@ alias dcls='docker-compose-list'
 alias dci='docker-compose-inspect'
 alias dcu='docker-compose-update'
 alias de='docker-exec'
-alias desktop='cd $desktop_dir'
 alias dgrep='docker-ps-format|grep'
 alias di='docker-inspect'
 alias dps='docker-ps-format'
@@ -75,32 +74,8 @@ function docker-ps-format() {
 function docker-ps-format-sort-by-name() {
     docker-ps-format $*|awk 'NR<2{print $0;next}{print $0| "sort -k2"}'
 }
-function explain() {
-    alias_result=$(alias $1 2>&1)
-    if [[ ! $alias_result =~ "not found" ]]; then
-        echo $alias_result
-        alias_part=${alias_result#*\'}
-        alias_part=${alias_part:0:${#alias_part}-1}
-        declare -f $alias_part
-    fi
-    declare -f $1
-}
-# create a directory recursively and cd to it
-function make-dir() {
-        mkdir -p "$@" && cd "$_";
-}
-function path() {
-    echo $PATH|sed -E 's/:/\n/g'
-}
-function push_wiki() {
-    priv
-    wiki
-    git commit -am "$1"
-    git push
-    team
-}
 
-# docker-compose completion
+### docker-compose completion
 __get_docker_compose_services() {
     if ls docker-compose* 1> /dev/null 2>&1; then
         echo $(egrep -h '^[[:blank:]]{2}[a-z-]+:' docker-compose*.yml | sort --unique | tr -d '[:space:]' | tr ':' ' ')
@@ -109,6 +84,7 @@ __get_docker_compose_services() {
         echo ""
     fi
 }
+
 __docker_compose_completion() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
     local commands="build bundle config create down events exec help images kill logs pause port ps pull push restart rm run start stop top unpause up version"
@@ -128,12 +104,14 @@ __docker_compose_completion() {
     fi
     return 0
 }
+
 __docker_compose_alias_completion() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
     local services=$(__get_docker_compose_services)
     COMPREPLY=($(compgen -W "${services}" -- ${cur}))
     return 0
 }
+
 # https://salsa.debian.org/debian/bash-completion/blob/master/bash_completion
 # This method is copied from bash completion: `declare -f _quote_readline_by_ref`
 __quote_readline_by_ref_copied() {
@@ -144,6 +122,7 @@ __quote_readline_by_ref_copied() {
     fi
     [[ ${!2} == \$* ]] && eval $2=${!2}
 }
+
 # This method is copied and adapted from bash completion: `declare -f _filedir`
 __filedir_copied() {
     local IFS='
@@ -174,6 +153,7 @@ __docker_compose_copy_completion() {
     __docker_compose_alias_completion
     __filedir_copied
 }
+
 complete -F __docker_compose_completion dc docker-compose
 complete -F __docker_compose_alias_completion dcl dcu dce dcer dci dcls
 complete -F __docker_compose_copy_completion dccp
