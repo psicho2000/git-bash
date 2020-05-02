@@ -97,7 +97,7 @@ docker-compose-exec-root() {
 }
 
 docker-compose-list() {
-    docker-compose exec "$1" sh -c "ls -la --color=auto $2"
+    docker-compose exec "$1" sh -c "ls -lAh --color=auto --group-directories-first $2"
 }
 
 docker-compose-inspect() {
