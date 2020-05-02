@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # docker
-alias d='winpty docker'
+alias d='docker'
 alias de='docker-exec'
 alias dgrep='docker-ps-format|grep'
 alias di='docker-inspect'
@@ -9,11 +9,11 @@ alias dps='docker-ps-format'
 alias dpsn='docker-ps-format-sort-by-name'
 
 # docker-compose
-alias dc='winpty docker-compose'
+alias dc='docker-compose'
 alias dccp='docker-compose-copy'
 alias dce='docker-compose-exec'
 alias dcer='docker-compose-exec-root'
-alias dcl='winpty docker-compose logs -f --tail 500'
+alias dcl='docker-compose logs -f --tail 500'
 alias dcls='docker-compose-list'
 alias dci='docker-compose-inspect'
 alias dcu='docker-compose-update'
@@ -49,10 +49,10 @@ function docker-compose-copy() {
     fi
 }
 function docker-compose-exec() {
-    winpty docker-compose exec "$1" bash
+    docker-compose exec "$1" bash
 }
 function docker-compose-exec-root() {
-    winpty docker-compose exec -u root "$1" bash
+    docker-compose exec -u root "$1" bash
 }
 function docker-compose-list {
     docker-compose exec "$1" sh -c "ls -la --color=auto $2"
@@ -61,12 +61,12 @@ function docker-compose-inspect() {
     docker inspect "$(docker-compose ps -q $1)" | less
 }
 function docker-compose-update() {
-    winpty docker-compose stop $*
-    winpty docker-compose pull $*
-    winpty docker-compose up -d $*
+    docker-compose stop $*
+    docker-compose pull $*
+    docker-compose up -d $*
 }
 function docker-exec() {
-    winpty docker exec -it "$1" bash
+    docker exec -it "$1" bash
 }
 function docker-inspect() {
   docker ps|grep $1|awk -F'[[:space:]]+' '{print $1}'|xargs docker inspect|less
