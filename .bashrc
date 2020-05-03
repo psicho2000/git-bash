@@ -46,7 +46,7 @@ history-search() {
 
 # create a directory recursively and cd to it
 make-dir() {
-        mkdir -p "$@" && cd "$_";
+    mkdir -p "$@" && cd "$_";
 }
 
 path() {
