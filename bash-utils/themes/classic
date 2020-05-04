@@ -42,19 +42,17 @@ function __git_status {
             local ahead_behind=($(git rev-list --left-right --count "@{upstream}"..."HEAD" 2>/dev/null))
             local ahead=${ahead_behind[1]}
             local behind=${ahead_behind[0]}
-            if [[ $ahead -gt 0 || $behind -gt 0 ]]; then
-                if [[ $ahead -gt 0 ]]; then
-                    if [[ ! -z $s ]]; then
-                        s+=" "
-                    fi
-                    s+="$ahead↑"
+            if [[ $ahead -gt 0 ]]; then
+                if [[ ! -z $s ]]; then
+                    s+=" "
                 fi
-                if [[ $behind -gt 0 ]]; then
-                    if [[ ! -z $s ]]; then
-                        s+=" "
-                    fi
-                    s+="$behind↓"
+                s+="$ahead↑"
+            fi
+            if [[ $behind -gt 0 ]]; then
+                if [[ ! -z $s ]]; then
+                    s+=" "
                 fi
+                s+="$behind↓"
             fi
         #fi;
 
