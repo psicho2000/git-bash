@@ -43,13 +43,13 @@ function __git_status {
             local ahead=${ahead_behind[1]}
             local behind=${ahead_behind[0]}
             if [[ $ahead -gt 0 ]]; then
-                if [[ ! -z $s ]]; then
+                if [[ -n $s ]]; then
                     s+=" "
                 fi
                 s+="$ahead↑"
             fi
             if [[ $behind -gt 0 ]]; then
-                if [[ ! -z $s ]]; then
+                if [[ -n $s ]]; then
                     s+=" "
                 fi
                 s+="$behind↓"
