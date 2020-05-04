@@ -40,7 +40,7 @@ dpsn    formatted docker ps, sorted by image name
 docker compose aliases (autocompletion available for all commands)
 dc      docker-compose
         args: see docker-compose
-dccp    copy from or to service
+dccp    copy from or to service; container does not need to be started - only created
         args: source target
 dce     enter service's bash as default user
         args: servicename
