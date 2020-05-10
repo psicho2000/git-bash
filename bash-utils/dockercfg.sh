@@ -2,7 +2,7 @@
 
 # docker
 alias d='docker'
-alias dal="docker-aliases"
+alias dal='docker-aliases'
 alias de='docker-exec'
 alias dgrep='docker-ps-format|grep'
 alias di='docker-inspect'
@@ -11,7 +11,7 @@ alias dpsn='docker-ps-format-sort-by-name'
 
 # docker-compose
 alias dc='docker-compose'
-alias dccp='docker-compose-copy't
+alias dccp='docker-compose-copy'
 alias dce='docker-compose-exec'
 alias dcer='docker-compose-exec-root'
 alias dcl='docker-compose logs -f --tail 500'
