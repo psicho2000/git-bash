@@ -128,7 +128,7 @@ docker-ps-format-sort-by-name() {
 ### docker-compose completion
 __get_docker_compose_services() {
     if ls docker-compose* 1> /dev/null 2>&1; then
-        echo $(egrep -h '^[[:blank:]]{2}[a-z-]+:' docker-compose*.yml | sort --unique | tr -d '[:space:]' | tr ':' ' ')
+        echo $(egrep -h '^[[:blank:]]{2}[a-z0-9-]+:' docker-compose*.yml | sort --unique | tr -d '[:space:]' | tr ':' ' ')
     else
         # we are not in a directory with docker-compose* files
         echo ""
