@@ -4,6 +4,8 @@
 """"" Settings
 """"""""""""""
 
+" set encoding to utf-8
+set encoding=utf-8
 " minimal number of lines to always keep visible above the cursor when scrolling
 set scrolloff=7
 " set history size
@@ -96,7 +98,7 @@ command! MakeTags !ctags -R .
 """"""""""""""""
 
 " Delete trailing white space on save
-fun! CleanExtraSpaces()
+fun! StripTrailingWhitespace()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
     silent! %s/\s\+$//e
@@ -104,8 +106,9 @@ fun! CleanExtraSpaces()
     call setreg('/', old_query)
 endfun
 if has("autocmd")
-    " instead of *.*, you may define desired filetypes like *.java,*.yml,*.ts
-    autocmd BufWritePre *.* call CleanExtraSpaces()
+    " Don't strip markdown files (where trailing whitespace indicates a line break)
+    let fileTypeToIgnore = ['markdown']
+    autocmd BufWritePre * if index(fileTypeToIgnore, &ft) < 0 | call StripTrailingWhitespace() | endif
 endif
 
 " active tab shows relative line numbers, inactive shows absolute line numbers
