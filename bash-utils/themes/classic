@@ -91,7 +91,7 @@ function __theme_classic {
     PS1+="${blue}"                  # change color to blue
     PS1+='`__git_status`'           # show git status
     PS1+="${purple}"                # change color to purple
-    PS1+=" \t"                       # current time in 24h format
+    PS1+=" \t"                      # current time in 24h format
     PS1+="${reset}"                 # reset color
     PS1+="\n"                       # new line
     PS1+="$ "                       # prompt: always $
