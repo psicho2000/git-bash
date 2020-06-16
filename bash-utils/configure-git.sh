@@ -33,6 +33,8 @@ git config --global alias.drop-commits '!f() { [[ $1 =~ ^[0-9]+$ ]] && num=$1 ||
 git config --global alias.join '!f() { [[ $1 =~ ^[0-9]+$ ]] && num=$1 || num=2; git rebase -i HEAD~$num; }; f'
 # Delete local branches without a remote
 git config --global alias.prune-branches '!git remote prune origin && git branch -vv | grep '"'"': gone]'"'"' | awk '"'"'{print $1}'"'"' | xargs -r git branch -D'
+# Reset to remote, overwriting any differing local history
+git config --global alias.hard-reset '!git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)'
 
 ##### Logs
 # One-line log including branching in/out (last 30 commits)
