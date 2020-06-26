@@ -41,12 +41,14 @@ git config --global alias.hard-reset '!git reset --hard origin/$(git rev-parse -
 git config --global alias.l "log --pretty=format:'%C(yellow)%h %<(30)%Cgreen%an%x09%C(black bold)%ad%x09%C(auto)%d%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S' -30"
 # One-line log including branching in/out (all commits)
 git config --global alias.la "log --pretty=format:'%C(yellow)%h %<(30)%Cgreen%an%x09%C(black bold)%ad%x09%C(auto)%d%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S'"
-# One-line log including branching in/out and stats (last 15 commits)
-git config --global alias.ls "log --pretty=format:'%C(yellow)%h %<(30)%Cgreen%an%x09%C(black bold)%ad%x09%C(auto)%d%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S' -15 --stat"
+# One-line log including branching in/out and stats (long listing, last 15 commits)
+git config --global alias.ll "log --pretty=format:'%C(yellow)%h %<(30)%Cgreen%an%x09%C(black bold)%ad%x09%C(auto)%d%Creset %s' --date=format:'%Y-%m-%d %H:%M:%S' -15 --stat"
 # One-line log including branching in/out (graphical)
 git config --global alias.hist "log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
 # Last commit including stats
 git config --global alias.last 'log -1 --stat HEAD'
+# Specific commit including stats
+git config --global alias.ls 'log -1 --stat'
 # List contributors with number of commits
 git config --global alias.contributors 'shortlog --summary --numbered'
 
