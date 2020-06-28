@@ -1,0 +1,56 @@
+# https://starship.rs/config/
+
+[directory]
+truncation_length = 8
+truncate_to_repo = false
+style = "fg:#af8700"
+
+[java]
+style = "fg:#af005f"
+
+[git_branch]
+style = "fg:#00afaf"
+
+[git_commit]
+style = "fg:#00afaf"
+
+[git_state]
+cherry_pick = "🍒 PICKING"
+style = "fg:#268bd2"
+
+[git_status]
+ahead = "↑"
+behind = "↓"
+conflicted_count.enabled = true
+untracked_count.enabled = true
+stashed_count.enabled = true
+modified_count.enabled = true
+staged_count.enabled = true
+renamed_count.enabled = true
+deleted_count.enabled = true
+show_sync_count = true
+style = "fg:#268bd2"
+
+[hostname]
+ssh_only = false
+style = "fg:#5f5faf"
+
+[package]
+disabled = false
+style = "fg:#d75f00"
+
+[time]
+disabled = false
+style = "fg:#f2f2f2"
+
+[username]
+show_always = true
+style_user = "fg:#5f8700"
+style_root = "fg:#ae0000"
+
+[custom.maven_version]
+command = "echo -n v && xpath -q -e '/project/version/text()' pom.xml"
+files = ["pom.xml"]
+prefix = "is 📦 "
+description = "The maven project version from pom.xml"
+style = "fg:#d75f00"

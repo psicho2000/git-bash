@@ -16,12 +16,16 @@ theme() {
             echo ". ~/bash-utils/themes/pureline ~/bash-utils/themes/.pureline.conf" > "$THEME_CONFIG_FILE"
             exec bash -l
             ;;
+        starship)
+            eval "$(starship init bash)"
+            echo "eval \"\$(starship init bash)\"" >"$THEME_CONFIG_FILE"
+            ;;
     esac
 }
 
 _theme_completion() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=( $(compgen -W "classic diesire pureline" -- ${cur}) )
+    COMPREPLY=( $(compgen -W "classic diesire pureline starship" -- ${cur}) )
     return 0
 }
 

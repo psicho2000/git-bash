@@ -5,6 +5,9 @@ eval `dircolors ~/bash-utils/.dircolors`
 export EDITOR='vim'
 export VISUAL='vim'
 
+# Define starship config
+export STARSHIP_CONFIG=$HOME/bash-utils/themes/starship
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -14,6 +17,7 @@ alias ~='cd ~' # `cd` is probably faster to type though
 alias -- -='cd -'
 
 # general aliases
+alias cat='bat'
 alias count='~/bash-utils/count.sh'
 alias desktop='cd $desktop_dir'
 alias greppath='path|grep -i'
@@ -84,9 +88,14 @@ __git_complete g __git_main
 
 ### Includes
 # Include last so that common aliases can be overridden in custom settings
+. ~/bash-utils/fzf/fzf_config
+. ~/bash-utils/fzf/completion.bash
+. ~/bash-utils/fzf/key-bindings.bash
 . ~/bash-utils/dockercfg.sh
 . ~/bash-utils/.settings
 . ~/bash-utils/project_dir.sh
 . ~/bash-utils/login.sh
 . ~/bash-utils/colors.sh
 . ~/bash-utils/themes/theme.sh
+# curl -O https://raw.githubusercontent.com/rupa/z/master/z.sh ~/bash-utils && chmod +x ~/bash-utils/z.sh
+. ~/bash-utils/z.sh
