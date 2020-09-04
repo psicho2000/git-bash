@@ -18,7 +18,6 @@ alias -- -='cd -'
 
 # general aliases
 alias cat='bat'
-alias count='~/bash-utils/count.sh'
 alias desktop='cd $DESKTOP_DIR'
 alias df='df -h'
 alias du='du -h'
@@ -132,6 +131,7 @@ __git_complete g __git_main
 . ~/bash-utils/project_dir.sh
 . ~/bash-utils/login.sh
 . ~/bash-utils/colors.sh
+. ~/bash-utils/count.sh
 . ~/bash-utils/themes/theme.sh
 # curl -O https://raw.githubusercontent.com/rupa/z/master/z.sh ~/bash-utils && chmod +x ~/bash-utils/z.sh
 . ~/bash-utils/z.sh
