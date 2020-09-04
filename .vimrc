@@ -37,6 +37,15 @@ set incsearch
 set directory^=/tmp//
 " Enable modelines in files
 set modeline
+" Always show current filename in status
+set statusline=%F%m%r%<\ %=%l/%L\ [%p%%],\ Row\ %v
+highlight statusline ctermbg=white ctermfg=black
+set laststatus=2
+" Use a more visible color when highlighting matching parens
+highlight MatchParen ctermbg=blue
+" Split more naturally
+set splitbelow
+set splitright
 
 " Tweaks for browsing
 let g:netrw_banner=0        " disable annoying banner
@@ -48,20 +57,24 @@ let g:netrw_liststyle=3     " tree view
 """"""""""""""""""
 
 " Define a leader key
-let mapleader=","
+let mapleader=" "
 
 " Toggle autoindent/smartindent for pasting
 set pastetoggle=<F2>
 set showmode
 
+" Toggle line numbers
+noremap <F4> :set number!<CR>:set relativenumber!<CR>
+
+" Toggle explorer
+noremap <F6> :20%Lexplore<CR>
+
 " Toggle showing invisible characters
 noremap <leader>q :set list!<CR>
-inoremap <leader>q <C-o>:set list!<CR>
 cnoremap <leader>q <C-c>:set list!<CR>
 
 " Remove search highlighting
 noremap <leader>w :nohlsearch<CR>
-inoremap <leader>w <C-o>:nohlsearch<CR>
 cnoremap <leader>w <C-c>:nohlsearch<CR>
 
 " Ctrl+j/k moves current line down/up
@@ -74,7 +87,6 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 " Enable blocked mappings on German keyboards for tag navigation
 nnoremap <leader>l <C-]>
-inoremap <leader>l <C-]>
 nnoremap g<leader>l g<C-]>
 " Navigate tag back. In most Console Hosts, ^t is mapped to new tab - therefore an additional mapping is necessary.
 nmap <leader>h <C-t>
@@ -82,6 +94,10 @@ nmap <leader>h <C-t>
 " Paste register below/above current line
 nnoremap <leader>p o<Esc>p
 nnoremap <leader>P O<Esc>p
+
+" Keep selection after indent in visual mode
+:vnoremap < <gv
+:vnoremap > >gv
 
 " Disable Ex Mode
 :nnoremap Q <Nop>
