@@ -19,7 +19,7 @@ alias -- -='cd -'
 # general aliases
 alias cat='bat'
 alias count='~/bash-utils/count.sh'
-alias desktop='cd $desktop_dir'
+alias desktop='cd $DESKTOP_DIR'
 alias df='df -h'
 alias du='du -h'
 alias fdh='fd --hidden --no-ignore --exclude ".git" --follow --color=always'
@@ -36,7 +36,7 @@ alias rgh='rg --hidden --glob "!.git" --smart-case'
 alias reload='exec bash -l'
 alias tar-compress-gz='tar -czvf'
 alias tar-extract-gz='tar -xzvf'
-alias wiki='cd $wiki_dir'
+alias wiki='cd $WIKI_DIR'
 
 # Show what an alias or function does
 explain() {

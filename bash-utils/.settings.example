@@ -1,6 +1,6 @@
 # Configuration
-export desktop_dir='/d/Eigenes/Desktop'
-export project_base_dir='/d/Projects/'
-export wiki_dir='/d/Projects/Wiki'
+export DESKTOP_DIR='/d/Eigenes/Desktop'
+export PROJECT_DIR='/d/Projects/'
+export WIKI_DIR='/d/Projects/Wiki'
 
 # Environment specific commands/aliases/exports
