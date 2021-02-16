@@ -85,7 +85,7 @@ explain() {
     fi
     if [[ -n $alias_result && ! $alias_result =~ "not found" ]]; then
         if hash bat &> /dev/null; then
-            echo "$alias_result" | bat --plain --language alias
+            echo "$alias_result" | bat --plain --language sh
         else
             echo "$alias_result"
         fi
