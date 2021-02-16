@@ -4,17 +4,18 @@
 alias d='docker'
 alias dal='docker-aliases'
 alias de='docker-exec'
-alias dgrep='docker-ps-format|grep'
+alias dgrep='docker-ps-format | grep'
 alias di='docker-inspect'
 alias dps='docker-ps-format'
 alias dpsn='docker-ps-format-sort-by-name'
+alias ds='docker stats --format "table {{.ID}}    {{.Name}}   {{.MemUsage}}   {{.CPUPerc}}"'
 
 # docker-compose
 alias dc='docker-compose'
 alias dccp='docker-compose-copy'
 alias dce='docker-compose-exec'
 alias dcer='docker-compose-exec-root'
-alias dcl='docker-compose logs -f --tail 500'
+alias dcl='docker-compose logs --follow --tail 500'
 alias dcls='docker-compose-list'
 alias dci='docker-compose-inspect'
 alias dcu='docker-compose-update'
@@ -162,49 +163,14 @@ __docker_compose_alias_completion() {
     return 0
 }
 
-# https://salsa.debian.org/debian/bash-completion/blob/master/bash_completion
-# This method is copied from bash completion: `declare -f _quote_readline_by_ref`
-__quote_readline_by_ref_copied() {
-    if [[ $1 == \'* ]]; then
-        printf -v $2 %s "${1:1}"
-    else
-        printf -v $2 %q "$1"
-    fi
-    [[ ${!2} == \$* ]] && eval $2=${!2}
-}
-
-# This method is copied and adapted from bash completion: `declare -f _filedir`
-__filedir_copied() {
-    local IFS='
-'
-    local -a toks
-    local x tmp
-    x=$(compgen -d -- "$cur") && while read -r tmp; do
-        toks+=("$tmp")
-    done <<<"$x"
-    if [[ "$1" != -d ]]; then
-        local quoted
-        __quote_readline_by_ref_copied "$cur" quoted
-        local xspec=${1:+"!*.@($1|${1^^})"}
-        x=$(compgen -f -X "$xspec" -- $quoted) && while read -r tmp; do
-            toks+=("$tmp")
-        done <<<"$x"
-        [[ -n ${COMP_FILEDIR_FALLBACK:-} && -n "$1" && ${#toks[@]} -lt 1 ]] && x=$(compgen -f -- $quoted) && while read -r tmp; do
-            toks+=("$tmp")
-        done <<<"$x"
-    fi
-    if [[ ${#toks[@]} -ne 0 ]]; then
-        compopt -o filenames 2>/dev/null
-        COMPREPLY+=("${toks[@]}")
-    fi
-}
-
 __docker_compose_copy_completion() {
-    local cur="${COMP_WORDS[COMP_CWORD]}"
-    __docker_compose_alias_completion
-    __filedir_copied
+    __docker_compose_service_completion
+    # path completion
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    local IFS=$'\n'
+    COMPREPLY+=($(compgen -o plusdirs -f -- "$cur"))
 }
 
-complete -F __docker_compose_completion dc docker-compose
-complete -F __docker_compose_alias_completion dcl dcu dce dcer dci dcls
-complete -F __docker_compose_copy_completion dccp
+complete -F __docker_compose_completion         dc docker-compose
+complete -F __docker_compose_alias_completion   dcl dcu dce dcer dci dcls
+complete -F __docker_compose_copy_completion    dccp

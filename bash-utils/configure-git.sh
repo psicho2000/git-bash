@@ -70,6 +70,7 @@ git config --global alias.local-branches '!git branch -vv | grep ": gone]"'
 echo "Configuring git..."
 # general git config
 git config --global branch.autosetuprebase always
+git config --global pull.rebase true
 git config --global core.excludesfile '~/.gitignore_global'
 git config --global core.editor 'vim'
 git config --global help.autocorrect 20
