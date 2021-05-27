@@ -203,10 +203,11 @@ edit-current-file() {
     "$EDITOR" ${valid_files[@]}
 }
 
+# Edit current file with Ctrl+N
 # shellcheck disable=SC2016
 bind -x '"\C-n":"edit-current-file $READLINE_LINE"'
 
-# Clear screen
+# Clear screen with Alt+Shift+L
 bind -x '"\eL": printf "\ec"'
 
 sudo-command-line() {
@@ -229,6 +230,7 @@ sudo-command-line() {
         ((READLINE_POINT+=5))
     fi
 }
+# sudo current/last command with Ctrl+F
 bind -x '"\C-f":"sudo-command-line"'
 
 transpose_whitespace_words() {
@@ -261,6 +263,7 @@ transpose_whitespace_words() {
         fi
     fi
 }
+# Swap words with Ctrl+G
 bind -x '"\C-g": transpose_whitespace_words'
 
 repeat_last_word() {
@@ -280,6 +283,7 @@ repeat_last_word() {
     READLINE_LINE=${prefix}${last_word}${suffix}
     READLINE_POINT=$((${#prefix} + ${#last_word}))
 }
+# Repeat last word with Alt+M
 bind -x '"\em": repeat_last_word'
 
 # Go directory up with Ctrl+Alt+K
@@ -308,11 +312,11 @@ cd() {
 }
 # keycodes 202 and 203 do not exist, so using it as a hack
 # The usage of the macro hides the 'pushd ..'
-# Cycle backwards
+# Cycle backwards with Ctrl+Alt+H and Ctrl+Alt+Left
 bind -x '"\202": pushd +1'
 bind '"\e\C-h":"\C-u\202\C-m"'
 bind '"\e[1;7D":"\C-u\202\C-m"'
-# Cycle forwards
+# Cycle forwards with Ctrl+Alt+L and Ctrl+Alt+Right
 bind -x '"\203": pushd -0'
 bind '"\e\C-l":"\C-u\203\C-m"'
 bind '"\e[1;7C":"\C-u\203\C-m"'
