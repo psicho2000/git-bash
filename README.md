@@ -41,7 +41,7 @@ Intended for Git Bash for Windows
 ## Enabling multiple GitHub credentials
 Normally, it should be possible to configure local credentials, which overwrite global (which override system).
 This however does not work.
-Workaround: use store for private credentials, manager for team credentials, swap using aliases:
+Workaround: use store for private credentials, manager-core for team credentials, swap using aliases:
 1. Create `C:/Users/<user>/.git-credentials` (containing private credentials)
    * `https://<user>:<password>@github.com`
 2. Remove [credential] section from system config (needs an admin user)

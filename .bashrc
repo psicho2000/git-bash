@@ -179,7 +179,7 @@ alias gp='git push'
 alias gs='git s'
 alias gu='git pull'
 alias priv='git config --global credential.helper store'
-alias team='git config --global credential.helper manager'
+alias team='git config --global credential.helper manager-core'
 
 push_wiki() {
     priv
