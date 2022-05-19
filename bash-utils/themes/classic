@@ -5,6 +5,7 @@
 # git checks are slow on Windows. Therefore following checks are currently being disabled:
 # check if is-inside-git-dir, ensure update-index.
 # Enable it again when WSL2 is available and test.
+# Speed can be tested via backup/test-git-speed.sh.
 # See GOTCHA in: https://www.hanselman.com/blog/HowToMakeAPrettyPromptInWindowsTerminalWithPowerlineNerdFontsCascadiaCodeWSLAndOhmyposh.aspx
 
 function __git_status {
