@@ -10,7 +10,7 @@
 function __git_status {
     local s;
     # Check if the current directory is in a Git repository.
-    if [ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]; then
+    if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]]; then
 
         # check if the current directory is in .git before running git checks
         #if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
@@ -19,17 +19,17 @@ function __git_status {
             #git update-index --really-refresh -q &>/dev/null;
 
             # Check for untracked files.
-            if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+            if [[ -n $(git ls-files --others --exclude-standard) ]]; then
                 s+='?';
             fi;
 
             # Check for unstaged changes.
-            if ! $(git diff-files --quiet --ignore-submodules --); then
+            if ! git diff-files --quiet --ignore-submodules --; then
                 s+='!';
             fi;
 
             # Check for uncommitted changes in the index.
-            if ! $(git diff --quiet --ignore-submodules --cached); then
+            if ! git diff --quiet --ignore-submodules --cached; then
                 s+='+';
             fi;
 
@@ -39,6 +39,7 @@ function __git_status {
             #fi;
 
             # Check ahead/behind status
+            # shellcheck disable=SC2207,SC2140
             local ahead_behind=($(git rev-list --left-right --count "@{upstream}"..."HEAD" 2>/dev/null))
             local ahead=${ahead_behind[1]}
             local behind=${ahead_behind[0]}
