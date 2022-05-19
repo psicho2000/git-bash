@@ -3,7 +3,7 @@
 # This file is sourced by git-bash in C:\Program Files\Git\etc\profile.d\git-prompt.sh
 
 # git checks are slow on Windows. Therefore following checks are currently being disabled:
-# check if is-inside-git-dir, ensure update-index, check for stashes.
+# check if is-inside-git-dir, ensure update-index.
 # Enable it again when WSL2 is available and test.
 # See GOTCHA in: https://www.hanselman.com/blog/HowToMakeAPrettyPromptInWindowsTerminalWithPowerlineNerdFontsCascadiaCodeWSLAndOhmyposh.aspx
 
@@ -34,9 +34,9 @@ function __git_status {
             fi;
 
             # Check for stashed files.
-            # if git rev-parse --verify refs/stash &>/dev/null; then
-            #     git_status+='$';
-            # fi;
+            if git rev-parse --verify refs/stash &>/dev/null; then
+                git_status+='$';
+            fi;
 
             # Check ahead/behind status
             # shellcheck disable=SC2207,SC2140
