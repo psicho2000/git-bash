@@ -1,14 +1,17 @@
 # Set directory colors
-eval `dircolors ~/bash-utils/.dircolors`
+eval "$(dircolors ~/bash-utils/.dircolors)"
 
 # Define colors
 COLOR_CYAN=$(tput setaf 37);    export COLOR_CYAN
 COLOR_RESET=$(tput sgr0);       export COLOR_RESET
 
 # Set default editor
-export EDITOR='vim'
-export VISUAL='vim'
-alias v='vim'
+command -v nvim &>/dev/null && __editor=nvim || __editor=vim
+export EDITOR="${__editor}"
+export VISUAL="${__editor}"
+alias v="${__editor}"
+alias vi="${__editor}"
+alias vim="${__editor}"
 
 # Define starship config
 export STARSHIP_CONFIG=$HOME/bash-utils/themes/starship
