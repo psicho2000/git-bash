@@ -19,6 +19,7 @@ export STARSHIP_CONFIG=$HOME/bash-utils/themes/starship
 # Define pager
 ## do not page if output fits on screen, preserve colors, do not clear screen after quitting, smart case searching
 export LESS='--quit-if-one-screen --RAW-CONTROL-CHARS --no-init --ignore-case'
+export BAT_PAGER='less'
 export PAGER='less'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
@@ -152,7 +153,6 @@ complete -o default -F _ng_completion ng
 
 ### git
 
-alias cfg='/mingw64/bin/git --git-dir=$HOME/.git-bash --work-tree=$HOME'
 # Use Git's colored diff when available; delta is better, though
 diffgit() {
     git diff --no-index --color-words "$@"
@@ -163,27 +163,42 @@ export GIT_PAGER='less'
 alias g='git'
 alias gc='git clone'
 gd() {
-    local infotext diffresult
-    if [ -n "$(git diff 2>/dev/null)" ]; then
-        infotext="${COLOR_CYAN}Showing diff${COLOR_RESET}"
+    local infotext diffresult git_pager diff_line2
+    git_pager="${GIT_PAGER}"
+    if [[ $1 == '-s' || $1 == '--simple' ]]; then
+        shift
+        [[ "${git_pager}" =~ ^delta ]] && git_pager="${git_pager} --features simple"
+    else
+        [[ "${git_pager}" =~ ^delta ]] && git_pager="${git_pager} --features unobtrusive-side-by-side"
+    fi
+    if [[ -n "$(git diff 2>/dev/null)" ]]; then
+        infotext="${COL_CYAN_FG}Showing diff${COL_RESET}"
         diffresult=$(git diff --color=always "$@")
-    elif [ -n "$(git diff --cached 2>/dev/null)" ]; then
-        infotext="${COLOR_CYAN}Showing staged${COLOR_RESET}"
+    elif [[ -n "$(git diff --cached 2>/dev/null)" ]]; then
+        infotext="${COL_CYAN_FG}Showing staged${COL_RESET}"
         diffresult=$(git diff --color=always --cached "$@")
     else
-        infotext="${COLOR_CYAN}Showing last commit${COLOR_RESET}"
+        infotext="${COL_CYAN_FG}Showing last commit${COL_RESET}"
         diffresult=$(git show --color=always "$@")
+        diff_line2=$(echo "${diffresult}" | sed --silent 2p)
+        if [[ "${diff_line2}" =~ ^Merge: ]]; then
+            diff_line2="${diff_line2#* }"
+            diff_line2="${diff_line2/ /...}"
+            diffresult="${diffresult}\n\n$(git diff --color=always "${diff_line2}")"
+        fi
     fi
-    echo -e "$infotext\n$diffresult" | eval "$GIT_PAGER"
+    echo -e "${infotext}\n${diffresult}" | eval "${git_pager}"
 }
 ## gl and gs rely upon git aliases from .gitconfig
 alias gl='git l'
 alias gp='git push'
 alias gs='git s'
 alias gu='git pull'
+
+# git-bash specific
+alias cfg='/mingw64/bin/git --git-dir=$HOME/.git-bash --work-tree=$HOME'
 alias priv='git config --global credential.helper store'
 alias team='git config --global credential.helper manager-core'
-
 push_wiki() {
     priv
     wiki
