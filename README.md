@@ -35,6 +35,17 @@ Intended for Git Bash for Windows
     1. If you have writing access to the repo, add a remote:
       1. Log in to your git repo to be able to configure push
       1. `cfg push -u origin HEAD`
+    1. If using neovim:
+       ```
+       mkdir $LOCALAPPDATA/nvim
+       vim $LOCALAPPDATA/nvim/init.vim
+       ```
+       Then set the contents of that file to the following (note: there are no symlinks in windows):
+       ```
+       set runtimepath^=~/.vim runtimepath+=~/.vim/after
+       let &packpath=&runtimepath
+       source ~/.vimrc
+       ```
 
 *_To enable nano, check the appropriate box during installation. setup.sh takes care that line endings of .nanorc are Unix style (LF)._
 
