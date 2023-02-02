@@ -3,7 +3,11 @@ export FZF_DEFAULT_OPTS="
         --info=inline
         --height=80%
         --multi
+        --cycle
+        --ansi
+        --no-mouse
         --preview '([ -f {} ] && (bat --style=numbers --color=always {})) || ([ -d {} ] && (ls -lAh --color --group-directories-first {})) || echo {} 2> /dev/null | head -200'
+        --preview-window=right:80%
         --color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008'
         --bind '?:toggle-preview'
         --bind 'ctrl-a:toggle-all'
@@ -15,5 +19,3 @@ export FZF_DEFAULT_OPTS="
         --bind 'ctrl-f:preview-page-down'
         --bind 'ctrl-b:preview-page-up'
         "
-        #--preview-window=:hidden
-
